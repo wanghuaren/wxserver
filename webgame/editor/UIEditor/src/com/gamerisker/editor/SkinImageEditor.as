@@ -144,6 +144,7 @@ package com.gamerisker.editor
 		{
 			id = GUI.getInstanteId(value.@id.toString());
 			skin = value.@skin.toString();
+			source = value.@source.toString();
 			enabled = (value.@enabled.toString() == "true" ? true : false);
 			alpha = Number(value.@alpha);
 			x = int(value.@x);

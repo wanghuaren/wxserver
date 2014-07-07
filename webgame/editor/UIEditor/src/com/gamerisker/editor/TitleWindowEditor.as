@@ -35,11 +35,7 @@ package com.gamerisker.editor
 
 		override public function create():void
 		{
-			globalTextFormat=new TextFormat();
-			var m_properties_array:Array=ObjectUtil.getClassInfo(AeonDesktopTheme.m_headerTitleTextFormat).properties as Array;
-			for each(var m_proper:String in m_properties_array){
-				globalTextFormat[m_proper]=AeonDesktopTheme.m_headerTitleTextFormat[m_proper];
-			}
+			initGlobalTextFormat();
 			
 			id = GUI.getInstanteIdNew();
 			title = "TitleWindow";
@@ -53,6 +49,16 @@ package com.gamerisker.editor
 			textX = 10;
 			textY = 10;
 			enabled = true;
+		}
+		
+		private function initGlobalTextFormat():void{
+			if(globalTextFormat==null){
+				globalTextFormat=new TextFormat();
+				var m_properties_array:Array=ObjectUtil.getClassInfo(AeonDesktopTheme.m_headerTitleTextFormat).properties as Array;
+				for each(var m_proper:String in m_properties_array){
+					globalTextFormat[m_proper]=AeonDesktopTheme.m_headerTitleTextFormat[m_proper];
+				}
+			}
 		}
 		
 		public function get title():String
@@ -241,6 +247,8 @@ package com.gamerisker.editor
 		
 		override public function xmlToComponent(value:XML):Editor
 		{
+			initGlobalTextFormat();
+			
 			id = GUI.getInstanteId(value.@id.toString());
 			title = value.@title.toString();
 			skin = value.@skin.toString();
