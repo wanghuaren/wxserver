@@ -2,6 +2,7 @@ package com.gamerisker.manager
 {
 	import com.gamerisker.core.Define;
 	
+	import flash.filesystem.File;
 	import flash.net.SharedObject;
 
 	public class SharedManager
@@ -127,6 +128,7 @@ package com.gamerisker.manager
 		 */	
 		public function getUiSrcUrl() : String
 		{
+			s_uiSrcUrl=File.applicationDirectory.nativePath+"/source/UIXML/";
 			return s_uiSrcUrl;
 		}
 		

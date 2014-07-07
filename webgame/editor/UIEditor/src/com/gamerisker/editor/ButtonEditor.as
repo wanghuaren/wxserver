@@ -27,9 +27,6 @@ package com.gamerisker.editor
 			m_button.addEventListener(FeathersEventType.CREATION_COMPLETE , onCreateComponent);
 			addChild(m_button)
 		}
-		override public function validate():void{
-			m_button.validate();
-		}
 		
 		override public function create():void
 		{

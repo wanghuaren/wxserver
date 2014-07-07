@@ -24,6 +24,8 @@ package com.gamerisker.editor
 		
 		protected var m_type : String;
 		
+		protected var m_source : Object;
+		
 		public function get type():String{return m_type;}
 		
 		override public function get alpha():Number{return m_alpha;}
@@ -60,9 +62,13 @@ package com.gamerisker.editor
 			super.y = m_y;
 		}
 		
-		public function create() : void{}
+		public function get source():Object{return m_source;}
+		public function set source(value:Object):void
+		{
+			m_source = value;
+		}
 		
-		public function validate() : void{}
+		public function create() : void{}
 		
 		public function toArrayList() : ArrayList
 		{

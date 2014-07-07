@@ -28,9 +28,7 @@ package com.gamerisker.editor
 			m_label.addEventListener(FeathersEventType.CREATION_COMPLETE , onCreateComponent);
 			addChild(m_label);
 		}
-		override public function validate():void{
-			m_label.validate();
-		}
+
 		override public function create():void
 		{
 			id = GUI.getInstanteIdNew();

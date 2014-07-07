@@ -26,6 +26,7 @@ package com.gamerisker.themes
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
+	import flash.text.TextFormat;
 	
 	import starling.events.Event;
 	import starling.textures.Texture;
@@ -46,7 +47,7 @@ package com.gamerisker.themes
 
 		[Embed(source="/source/UISource/images/aeon_desktop.xml",mimeType="application/octet-stream")]
 		protected static const ATLAS_XML:Class;
-
+		public static var m_headerTitleTextFormat:TextFormat;
 		public function AeonDesktopTheme()
 		{
 			super();
@@ -61,7 +62,7 @@ package com.gamerisker.themes
 			this.atlasTexture.root.onRestore = this.atlasTexture_onRestore;
 			atlasBitmapData.dispose();
 			this.atlas = new TextureAtlas(atlasTexture, XML(new ATLAS_XML()));
-
+			m_headerTitleTextFormat=headerTitleTextFormat;
 			super.initialize();
 		}
 

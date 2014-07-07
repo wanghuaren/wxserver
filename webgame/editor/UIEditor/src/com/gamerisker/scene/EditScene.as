@@ -120,12 +120,12 @@ package com.gamerisker.scene
 				posY = touch.globalY;
 				
 				editor.addEventListener(FeathersEventType.CREATION_COMPLETE , create);
-				editor.validate();
+				ControlManager.target = addChild(editor) as Editor;
+				
 				function create(event:*):void
 				{
 					editor.x = posX - (editor.width >> 1);
 					editor.y = posY - (editor.height >> 1);
-					ControlManager.target = addChild(editor) as Editor;
 					
 					RookieEditor.getInstante().Operate.addCommand(new Command(Command.AddName));//记录命令
 					
@@ -164,12 +164,12 @@ package com.gamerisker.scene
 				
 				newEditor.create();
 				newEditor.addEventListener(FeathersEventType.CREATION_COMPLETE , create)
-				
+				container.addEditor(newEditor);
 				function create(event:*):void
 				{
 					newEditor.x = point.x - (newEditor.width >> 1);
 					newEditor.y = point.y - (newEditor.height >> 1);
-					container.addEditor(newEditor);
+//					container.addEditor(newEditor);
 					ControlManager.target = newEditor;
 					
 					RookieEditor.getInstante().Operate.addCommand(new Command(Command.AddName));

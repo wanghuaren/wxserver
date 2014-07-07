@@ -22,12 +22,11 @@ package com.gamerisker.editor
 			m_skinImage.addEventListener(FeathersEventType.CREATION_COMPLETE , onCreateComponent);
 			addChild(m_skinImage);
 		}
-		override public function validate():void{
-			m_skinImage.validate();
-		}
+
 		override public function create():void
 		{
 			id = GUI.getInstanteIdNew();
+			source="";
 			skin = "mail_lihe";
 			alpha = 1;
 			enabled = true;
@@ -37,11 +36,22 @@ package com.gamerisker.editor
 		{
 			return m_skin;
 		}
-
+		
 		public function set skin(value:String):void
 		{
 			m_skin = value;
-//			m_skinImage.skinInfo = SkinManager.GetSkinImage(value);
+			//			m_skinImage.skinInfo = SkinManager.GetSkinImage(value);
+		}
+		
+		override public function get source():Object
+		{
+			return m_source;
+		}
+		
+		override public function set source(value:Object):void
+		{
+			m_source = value;
+			m_skinImage.source = value;
 		}
 
 		public function get enabled():Boolean
@@ -81,6 +91,8 @@ package com.gamerisker.editor
 				+id+
 				'" skin="'
 				+skin+
+				'" source="'
+				+source+
 				'" x="'
 				+x+
 				'" y="'
@@ -119,11 +131,12 @@ package com.gamerisker.editor
 			var list : Array = new Array
 			list[0] = {"Name" : "id" , "Value" : id};
 			list[1] = {"Name" : "skin" , "Value" : skin};
-			list[2] = {"Name" : "enabled" , "Value" : enabled};
-			list[3] = {"Name" : "alpha" , "Value" : alpha};
-			list[4] = {"Name" : "x" , "Value" : x};
-			list[5] = {"Name" : "y" , "Value" : y};
-			list[6] = {"Name" : "rotation" , "Value" : rotation};
+			list[2] = {"Name" : "source" , "Value" : source};
+			list[3] = {"Name" : "enabled" , "Value" : enabled};
+			list[4] = {"Name" : "alpha" , "Value" : alpha};
+			list[5] = {"Name" : "x" , "Value" : x};
+			list[6] = {"Name" : "y" , "Value" : y};
+			list[7] = {"Name" : "rotation" , "Value" : rotation};
 			return new ArrayList(list);
 		}
 		

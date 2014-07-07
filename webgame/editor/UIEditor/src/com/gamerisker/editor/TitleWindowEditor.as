@@ -1,12 +1,16 @@
 package com.gamerisker.editor
 {
 	import com.gamerisker.manager.SkinManager;
+	import com.gamerisker.themes.AeonDesktopTheme;
 	import com.gamerisker.utils.GUI;
 	
 	import feathers.controls.Panel;
 	import feathers.events.FeathersEventType;
 	
+	import flash.text.TextFormat;
+	
 	import mx.collections.ArrayList;
+	import mx.utils.ObjectUtil;
 
 	public class TitleWindowEditor extends Editor
 	{
@@ -19,7 +23,7 @@ package com.gamerisker.editor
 		private var m_textX : int;
 		private var m_textY : int;
 		private var m_enabled : Boolean;
-		
+		private var globalTextFormat:TextFormat;
 		public function TitleWindowEditor()
 		{
 			m_type = "TitleWindow";
@@ -28,11 +32,15 @@ package com.gamerisker.editor
 			m_window.addEventListener(FeathersEventType.CREATION_COMPLETE , onCreateComponent);
 			addChild(m_window);
 		}
-		override public function validate():void{
-			m_window.validate();
-		}
+
 		override public function create():void
 		{
+			globalTextFormat=new TextFormat();
+			var m_properties_array:Array=ObjectUtil.getClassInfo(AeonDesktopTheme.m_headerTitleTextFormat).properties as Array;
+			for each(var m_proper:String in m_properties_array){
+				globalTextFormat[m_proper]=AeonDesktopTheme.m_headerTitleTextFormat[m_proper];
+			}
+			
 			id = GUI.getInstanteIdNew();
 			title = "TitleWindow";
 			skin = "default_beijing";
@@ -83,7 +91,15 @@ package com.gamerisker.editor
 		public function set fontSize(value:int):void
 		{
 			m_fontSize = value;
-			m_window.headerProperties.fontSize = value;
+			globalTextFormat.size=value;
+			
+			var m_textFormat:TextFormat=new TextFormat();
+			var m_properties_array:Array=ObjectUtil.getClassInfo(globalTextFormat).properties as Array;
+			for each(var m_proper:String in m_properties_array){
+				m_textFormat[m_proper]=globalTextFormat[m_proper];
+			}
+			
+			m_window.headerProperties.@titleProperties.textFormat= m_textFormat;
 		}
 
 		public function get textWidth():int
@@ -94,7 +110,7 @@ package com.gamerisker.editor
 		public function set textWidth(value:int):void
 		{
 			m_textWidth = value;
-			m_window.headerProperties.textWidth = value;
+			m_window.headerProperties.width = value;
 		}
 
 		public function get textHeight():int
@@ -105,7 +121,7 @@ package com.gamerisker.editor
 		public function set textHeight(value:int):void
 		{
 			m_textHeight = value;
-			m_window.headerProperties.textHeight = value;
+			m_window.headerProperties.height = value;
 		}
 
 		public function get textX():int
@@ -116,7 +132,7 @@ package com.gamerisker.editor
 		public function set textX(value:int):void
 		{
 			m_textX = value;
-			m_window.headerProperties.textX = value;
+			m_window.headerProperties.x = value;
 		}
 
 		public function get textY():int
@@ -127,7 +143,7 @@ package com.gamerisker.editor
 		public function set textY(value:int):void
 		{
 			m_textY = value;
-			m_window.headerProperties.textY = value;
+			m_window.headerProperties.y = value;
 		}
 
 		public function get enabled():Boolean

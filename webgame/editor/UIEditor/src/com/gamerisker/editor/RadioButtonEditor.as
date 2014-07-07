@@ -32,9 +32,7 @@ package com.gamerisker.editor
 			
 			RADIOBUTTONGROUP.addItem(m_radio);
 		}
-		override public function validate():void{
-			m_radio.validate();
-		}
+
 		override public function create():void
 		{
 			id = GUI.getInstanteIdNew();

@@ -28,9 +28,7 @@ package com.gamerisker.editor
 			addChild(m_checkBox);
 //			CheckBoxGroup.getInstance().addButton(m_checkBox);
 		}
-		override public function validate():void{
-			m_checkBox.validate();
-		}
+
 		override public function create():void
 		{
 			id = GUI.getInstanteIdNew();

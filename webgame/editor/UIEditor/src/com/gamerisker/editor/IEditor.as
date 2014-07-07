@@ -24,7 +24,5 @@ package com.gamerisker.editor
 		function get type() : String
 			
 		function create() : void
-			
-		function validate() : void
 	}
 }

@@ -24,9 +24,7 @@ package com.gamerisker.editor
 			m_slider.addEventListener(FeathersEventType.CREATION_COMPLETE , onCreateComponent);
 			addChild(m_slider);
 		}
-		override public function validate():void{
-			m_slider.validate();
-		}
+
 		override public function create():void
 		{
 			id = GUI.getInstanteIdNew();
