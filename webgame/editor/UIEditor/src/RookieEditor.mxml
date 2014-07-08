@@ -3,7 +3,7 @@
 					   xmlns:s="library://ns.adobe.com/flex/spark" 
 					   xmlns:mx="library://ns.adobe.com/flex/mx"
 					   width="900"
-					   height="150"
+					   height="576"
 					   backgroundAlpha="0"
 					   addedToStage="Init()"
 					   close="OnCloseWindow(event)" 
@@ -74,15 +74,20 @@
 			
 			public function Start() : void
 			{
-				Editor.open();
+//				Editor.open();
+				EditorScene.instance(EditScene);
 				
-				Tree.open();
+//				Tree.open();
+				TreeWindow.instance(TreePanel);
 				
-				Property.open();
+//				Property.open();
+				PropertyWindow.instance(PropertyPanel);
 				
-				Select.open();
+//				Select.open();
+				Select.panel=SelectComponet;
 								
-				Histroy.open();
+//				Histroy.open();
+				HistroyWindow.instance(HistoryPanel);
 				
 				statusBar.height = 3;
 				
@@ -93,15 +98,15 @@
 			
 			public function Hide() : void
 			{
-				Editor.visible = false;
+//				Editor.visible = false;
 				
-				Tree.visible = false;
+//				Tree.visible = false;
 				
-				Property.visible = false;
+//				Property.visible = false;
 				
-				Select.visible = false;
+//				Select.visible = false;
 				
-				Histroy.visible = false;
+//				Histroy.visible = false;
 				
 				this.visible = false;
 			}
@@ -144,9 +149,9 @@
 			{
 				if(!EditorW)
 				{
-					EditorW = new EditorScene;
-					EditorW.type = NativeWindowType.UTILITY;
-					EditorW.systemChrome = NativeWindowSystemChrome.NONE;
+					EditorW = EditorScene.instance();
+//					EditorW.type = NativeWindowType.UTILITY;
+//					EditorW.systemChrome = NativeWindowSystemChrome.NONE;
 				}
 				
 				return EditorW;
@@ -157,9 +162,9 @@
 			{
 				if(!TreeW)
 				{
-					TreeW = new TreeWindow;
-					TreeW.type = NativeWindowType.UTILITY;
-					TreeW.systemChrome = NativeWindowSystemChrome.NONE;
+					TreeW = TreeWindow.instance();
+//					TreeW.type = NativeWindowType.UTILITY;
+//					TreeW.systemChrome = NativeWindowSystemChrome.NONE;
 				}
 				return TreeW;
 			}
@@ -169,9 +174,9 @@
 			{
 				if(!PropertyW)
 				{
-					PropertyW = new PropertyWindow;
-					PropertyW.type = NativeWindowType.UTILITY;
-					PropertyW.systemChrome = NativeWindowSystemChrome.NONE;
+					PropertyW = PropertyWindow.instance();
+//					PropertyW.type = NativeWindowType.UTILITY;
+//					PropertyW.systemChrome = NativeWindowSystemChrome.NONE;
 				}
 				return PropertyW;
 			}
@@ -181,9 +186,9 @@
 			{
 				if(!SelectW)
 				{
-					SelectW = new SelectWindow;
-					SelectW.type = NativeWindowType.UTILITY;
-					SelectW.systemChrome = NativeWindowSystemChrome.NONE;
+					SelectW = SelectWindow.instance;
+//					SelectW.type = NativeWindowType.UTILITY;
+//					SelectW.systemChrome = NativeWindowSystemChrome.NONE;
 				}
 				return SelectW;
 			}
@@ -253,45 +258,45 @@
 			{
 				if(!m_histroy)
 				{
-					m_histroy = new HistroyWindow;
-					m_histroy.type = NativeWindowType.UTILITY;
-					m_histroy.systemChrome = NativeWindowSystemChrome.NONE;
+					m_histroy = HistroyWindow.instance();
+//					m_histroy.type = NativeWindowType.UTILITY;
+//					m_histroy.systemChrome = NativeWindowSystemChrome.NONE;
 				}
 				return m_histroy;
 			}
 			
 			public function ResetPosition() : void
 			{
-				SelectW.visible = true;
-				PropertyW.visible = true;
-				TreeW.visible = true;
-				EditorW.visible = true;
-				m_histroy.visible = true;
+//				SelectW.visible = true;
+//				PropertyW.visible = true;
+//				TreeW.visible = true;
+//				EditorW.visible = true;
+//				m_histroy.visible = true;
 				
-				this.width = stage.fullScreenWidth - SelectW.width - PropertyW.width;
-				EditorW.height = stage.fullScreenHeight - this.height - 100;
-				EditorW.width = this.width;
+//				this.width = stage.fullScreenWidth - SelectW.width - PropertyW.width;
+//				EditorW.height = stage.fullScreenHeight - this.height - 100;
+//				EditorW.width = this.width;
 				
 //				ChangeLog.move((stage.fullScreenWidth - ChangeLog.width) >> 1,(stage.fullScreenHeight - ChangeLog.height) >> 1);
 				
-				SelectW.move(0,0);
-				TreeW.move(0,SelectW.height);
+//				SelectW.move(0,0);
+//				TreeW.move(0,SelectW.height);
 				
-				this.move(SelectW.width,0);
-				EditorW.move(SelectW.width,this.height);
-				PropertyW.move(SelectW.width + this.width,0);
-				m_histroy.move(SelectW.width + this.width,PropertyW.height);
+//				this.move(SelectW.width,0);
+//				EditorW.move(SelectW.width,this.height);
+//				PropertyW.move(SelectW.width + this.width,0);
+//				m_histroy.move(SelectW.width + this.width,PropertyW.height);
 				
 				//所有窗口初始化完成后 显示
-				Editor.visible = true;
-				
-				Tree.visible = true;
-				
-				Property.visible = true;
-				
-				Select.visible = true;
-				
-				Histroy.visible = true;
+//				Editor.visible = true;
+//				
+//				Tree.visible = true;
+//				
+//				Property.visible = true;
+//				
+//				Select.visible = true;
+//				
+//				Histroy.visible = true;
 				
 				this.visible = true;
 				
@@ -306,15 +311,15 @@
 			
 			public function OnCloseWindow(event : Event) : void
 			{
-				if(PropertyW)PropertyW.close();
-				if(TreeW)TreeW.close();
-				if(SelectW)SelectW.close();
-				if(EditorW)EditorW.close();
+//				if(PropertyW)PropertyW.close();
+//				if(TreeW)TreeW.close();
+//				if(SelectW)SelectW.close();
+//				if(EditorW)EditorW.close();
 				if(Code)Code.close();
 				if(Help)Help.close();
 				if(LoadBar)LoadBar.close();
 				if(ChangeLog)ChangeLog.close();
-				if(Histroy)Histroy.close();
+//				if(Histroy)Histroy.close();
 				
 				getInstante().close();
 				
@@ -351,7 +356,7 @@
 				}
 				else
 				{
-					Alert.show("没有控制组件","错误",Alert.OK,RookieEditor.EditorW);
+					Alert.show("没有控制组件","错误",Alert.OK,RookieEditor.EditorW.panel);
 				}
 			}
 			
@@ -377,27 +382,27 @@
 			
 			private function OnOpenComponent() : void
 			{
-				Select.open();
+//				Select.open();
 			}
 			
 			private function OnOpenProperty() : void
 			{
-				Property.open();
+//				Property.open();
 			}
 			
 			private function OnOpenTree() : void
 			{
-				Tree.open();
+//				Tree.open();
 			}
 			
 			private function OnOpenEditor() : void
 			{
-				Editor.open();
+//				Editor.open();
 			}
 			
 			private function ShowHistory() : void
 			{
-				Histroy.open();
+//				Histroy.open();
 			}
 			
 			private function OnShowCode() : void
@@ -423,7 +428,7 @@
 				ControlManager.target = null;
 				Tree.update();
 				Code.update();
-				getInstante().Editor.title = "";
+				Editor.panel.title = "";
 			}
 			
 			private function OnChangeColor(event : ColorPickerEvent) : void
@@ -451,8 +456,8 @@
 			
 			private function OnResizeStage() : void
 			{
-				Editor.width = int(_width.text);
-				Editor.height = int(_height.text);
+				Editor.panel.width = int(_width.text);
+				Editor.panel.height = int(_height.text);
 			}
 			
 			private function OnStartDrag(event : MouseEvent) : void
@@ -477,35 +482,82 @@
 			}
 		]]>
 	</fx:Script>
-	<s:TitleWindow title="工具栏" x="0" y="0" width="100%" height="100%" id="panel" mouseDown="OnStartDrag(event)" close="OnCloseWindow(event)">
+	<s:TitleWindow id="panel" x="0" y="0" width="100%" height="151" close="OnCloseWindow(event)"
+				   dropShadowVisible="false" mouseDown="OnStartDrag(event)" title="工具栏">
 		<s:HGroup width="100%" height="22" x="10" y="2" >
 			<s:Button label="组件列表" click="OnOpenComponent()" toolTip="打开组件列表"/>
 			<s:Button label="组件属性" click="OnOpenProperty()" toolTip="打开组件属性"/>
 			<s:Button label="组件树" click="OnOpenTree()" toolTip="打开组件树"/>
-			<s:Button label="显示源码" click="OnShowCode()"  toolTip="打开源码显示窗口"/>
-			<s:Button label="设置" click="OnSetSystem()" toolTip="打开项目系统设置"/>
-			<s:Button label="操作记录" click="ShowHistory()" toolTip="打开操作历史记录"/>
 			<s:Button label="打开资源目录" click="OnOpenSource(event)" toolTip="打开关于窗口"/>
-			<s:Button label="关于" click="OnShowHelp()" toolTip="打开关于窗口"/>
+			<s:Button label="编辑区" click="OnOpenEditor()"  toolTip="打开编辑窗口"/>
 		</s:HGroup>
-		
-		<s:Label x="10" y="92" 	text="舞台宽高 : " 	width="100"/>
-		<s:TextInput x="70" y="87" text="960" id="_width" width="50" enter="OnResizeStage()" toolTip="修改编辑区宽度（回车确认）"/>
-		<s:Label x="120" y="92" 	text=" x " 	width="50"/>
-		<s:TextInput x="130" y="87" text="640" id="_height" width="50" enter="OnResizeStage()" toolTip="修改编辑区高度（回车确认）"/>
 		<s:HGroup width="100%" height="24" x="10" y="26" >
 			<s:Button label="保存" click="OnSave()" toolTip="保存界面(ctrl+s)"/>
 			<s:Button label="打开" click="OnOpen()"  toolTip="保存界面(ctrl+o)"/>
 			<s:Button label="打包" click="OnPack()"  toolTip="保存界面(ctrl+f)"/>
 			<s:Button label="解包" click="OnPrasePacke()"  toolTip="保存界面(ctrl+r)"/>
 			<s:Button label="一键打包" click="OnKeyPacker()" toolTip="一键打包所有界面"/>
+			<s:Button label="显示源码" click="OnShowCode()"  toolTip="打开源码显示窗口"/>
+			<s:Button label="设置" click="OnSetSystem()" toolTip="打开项目系统设置"/>
+			<s:Button label="操作记录" click="ShowHistory()" toolTip="打开操作历史记录"/>
+			<s:Button label="关于" click="OnShowHelp()" toolTip="打开关于窗口"/>
 		</s:HGroup>
 		<s:HGroup x="10" y="52" width="100%" height="27">
 			<s:Button label="清空编辑区" click="OnClear()" toolTip="清空编辑区域中的所有组件"/>
 			<s:Button label="对齐" click="OnShowAlign()" toolTip="打开对齐窗口"/>
-			<s:Button label="编辑区" click="OnOpenEditor()"  toolTip="打开编辑窗口"/>
+			<s:Label width="65" text="舞台宽高 : "/>
+			<s:TextInput id="_width" width="50" enter="OnResizeStage()" text="960"
+						 toolTip="修改编辑区宽度（回车确认）"/>
+			<s:Label width="50" text=" x "/>
+			<s:TextInput id="_height" width="50" enter="OnResizeStage()" text="640"
+						 toolTip="修改编辑区高度（回车确认）"/>
+			<s:CheckBox id="check" label="编辑区标题栏" change="OnChangeCheck(event)" selected="true"/>
+			<s:CheckBox id="check0" label="fps显示" change="OnChangeCheckFps(event)" selected="false"/>
 		</s:HGroup>
-		<s:CheckBox x="188" y="89" label="编辑区标题栏" change="OnChangeCheck(event)" id="check" selected="true"/>
-		<s:CheckBox x="289" y="89" label="fps显示" change="OnChangeCheckFps(event)" id="check0" selected="false"/>
+		<s:TitleWindow id="EditScene" x="0" y="86" width="899" height="33" dropShadowVisible="false"
+					   skinClass="spark.skins.spark.TitleWindowSkin" title="编辑区">
+		</s:TitleWindow>
+	</s:TitleWindow>
+	<s:TitleWindow id="SelectComponet" x="0" y="149" width="158" height="277"
+				   dropShadowVisible="false" title="选择组件">
+		<s:Button name="Button" x="15" y="15" width="120" label="Button" click="SelectWindow.instance.OnComponentClick(event)"/>
+		<s:Button name="CheckBox" x="15" y="40" width="120" label="CheckBox" click="SelectWindow.instance.OnComponentClick(event)"/>
+		<s:Button name="Label" x="15" y="65" width="120" label="Label" click="SelectWindow.instance.OnComponentClick(event)"/>
+		<s:Button name="TitleWindow" x="15" y="90" width="120" label="TitleWindow" click="SelectWindow.instance.OnComponentClick(event)"/>
+		<s:Button name="RadioButton" x="15" y="115" width="120" label="RadioButton" click="SelectWindow.instance.OnComponentClick(event)"/>
+		<s:Button name="Slider" x="15" y="140" width="120" label="Slider" click="SelectWindow.instance.OnComponentClick(event)"/>
+		<s:Button name="SkinImage" x="15" y="164" width="120" label="SkinImage" click="SelectWindow.instance.OnComponentClick(event)"/>
+		<s:Button name="List" x="15" y="189" width="120" label="List" click="SelectWindow.instance.OnComponentClick(event)"/>
+		<s:Button x="17" y="214" width="120" label="清除" click="SelectWindow.instance.OnComponentRemove(event)" toolTip="清除当前绑定在鼠标上的组件"/>
+	</s:TitleWindow>
+	<s:TitleWindow id="PropertyPanel" x="669" y="149" width="231" height="200"
+				   dropShadowVisible="false">
+		<s:DataGrid x="0" y="0" id="dataGrid" requestedRowCount="2" width="100%" height="100%" mouseDown="{event.stopPropagation()}" editable="true" doubleClickEnabled="true" doubleClick="PropertyWindow.instance().OnDoubleClick(event)" styleName="myDataGrid">
+			<s:columns>
+				<mx:ArrayList>
+					<s:GridColumn id="column1" dataField="Name" headerText="属性名" editable="false"/>
+					<s:GridColumn id="column2" dataField="Value" headerText="属性值" editable="false"/>
+				</mx:ArrayList>
+			</s:columns>
+		</s:DataGrid>
+	</s:TitleWindow>
+	<s:TitleWindow id="TreePanel" x="0" y="426" width="158" height="147" dropShadowVisible="false"
+				   title="舞台组件列表">
+		<mx:Tree id="myTree" width="100%" height="100%" showRoot="false" click="TreeWindow.instance().treeChanged(event);" labelFunction="TreeWindow.instance().LabelFunction" iconFunction="TreeWindow.instance().IconFunction"
+				 mouseDown="TreeWindow.instance().OnStop(event)"
+				 styleName="myTree"
+				 itemRenderer="com.gamerisker.view.TreeRender"/>
+	</s:TitleWindow>
+	<s:TitleWindow id="HistoryPanel" x="669" y="357" width="231" height="218"
+				   dropShadowVisible="false" title="历史动作">
+		<s:List id="list" width="100%" height="100%" change="HistroyWindow.instance().OnChangeEvent(event)" mouseDown="{event.stopPropagation();}">
+			<s:itemRenderer>
+				<fx:Component>
+					<s:ItemRenderer>
+						<s:Label id="nameLabel" text="{data['name']}" fontSize="12" top="5" left="5" right="5" height="16" />
+					</s:ItemRenderer>
+				</fx:Component>
+			</s:itemRenderer>
+		</s:List>
 	</s:TitleWindow>
 </s:WindowedApplication>

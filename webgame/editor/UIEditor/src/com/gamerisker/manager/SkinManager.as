@@ -175,7 +175,7 @@ package com.gamerisker.manager
 					int(skinXml.@scale9GridHeight));
 				
 				if(s_buttonList.hasOwnProperty(skinName))
-					Alert.show("Button Repeated skin : " + skinName ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor);
+					Alert.show("Button Repeated skin : " + skinName ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				s_buttonList[skinName] = skinInfo;
 			}
 			
@@ -189,7 +189,7 @@ package com.gamerisker.manager
 				skinInfo["skin"] = skinXml.@skin.toString();
 				
 				if(s_imagenumber.hasOwnProperty(skinName))
-					Alert.show("ImageNumber Repeated skin : " + skinName ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor);
+					Alert.show("ImageNumber Repeated skin : " + skinName ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				s_imagenumber[skinName] = skinInfo;
 			}
 			
@@ -213,7 +213,7 @@ package com.gamerisker.manager
 					int(skinXml.@textboundsH));
 				
 				if(s_popupWindowList.hasOwnProperty(skinName))
-					Alert.show("TitleWindow Repeated skin : " + skinName ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor);
+					Alert.show("TitleWindow Repeated skin : " + skinName ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				s_popupWindowList[skinName] = skinInfo;
 			}
 			
@@ -229,7 +229,7 @@ package com.gamerisker.manager
 				skinInfo["disabledSkin"] = skinXml.@disabledSkin.toString();
 				
 				if(s_imagebuttonList.hasOwnProperty(skinName))
-					Alert.show("ImageButton Repeated skin : " + skinName ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor);
+					Alert.show("ImageButton Repeated skin : " + skinName ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				s_imagebuttonList[skinName] = skinInfo;
 			}
 			
@@ -244,7 +244,7 @@ package com.gamerisker.manager
 				skinInfo["downSkin"] = skinXml.@downSkin.toString();
 				
 				if(s_checkBoxList.hasOwnProperty(skinName))
-					Alert.show("CheckBox Repeated skin : " + skinName ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor);
+					Alert.show("CheckBox Repeated skin : " + skinName ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				s_checkBoxList[skinName] = skinInfo;
 			}
 			
@@ -259,7 +259,7 @@ package com.gamerisker.manager
 				skinInfo["downSkin"] = skinXml.@downSkin.toString();
 				
 				if(s_radiobuttonList.hasOwnProperty(skinName))
-					Alert.show("RadioButton Repeated skin : " + skinName ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor);
+					Alert.show("RadioButton Repeated skin : " + skinName ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				s_radiobuttonList[skinName] = skinInfo;
 			}
 			
@@ -278,7 +278,7 @@ package com.gamerisker.manager
 					int(skinXml.@scale9GridHeight));
 				
 				if(s_sliderList.hasOwnProperty(skinName))
-					Alert.show("Slider Repeated skin : " + skinName ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor);
+					Alert.show("Slider Repeated skin : " + skinName ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				s_sliderList[skinName] = skinInfo;
 			}
 			
@@ -295,7 +295,7 @@ package com.gamerisker.manager
 					int(skinXml.@scale9GridHeight));
 				
 				if(s_uiframeList.hasOwnProperty(skinName))
-					Alert.show("SkinFrame Repeated skin : " + skinName ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor);
+					Alert.show("SkinFrame Repeated skin : " + skinName ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				s_uiframeList[skinName] = skinInfo;
 			}
 			
@@ -309,7 +309,7 @@ package com.gamerisker.manager
 				skinInfo["skin"] = skinXml.@skin.toString();
 				
 				if(s_uiimageList.hasOwnProperty(skinName))
-					Alert.show("SkinFrame Repeated skin : " + skinName ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor);
+					Alert.show("SkinFrame Repeated skin : " + skinName ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				s_uiimageList[skinName] = skinInfo;
 			}
 		}
@@ -356,7 +356,7 @@ package com.gamerisker.manager
 			
 			if(skinInfo==null)
 			{
-				Alert.show("Button not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor);
+				Alert.show("Button not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				return null;
 			}
 			
@@ -382,7 +382,7 @@ package com.gamerisker.manager
 			
 			if(skinInfo==null)
 			{
-				Alert.show("TitleWindow not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor);
+				Alert.show("TitleWindow not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				return null;
 			}
 			
@@ -409,7 +409,7 @@ package com.gamerisker.manager
 			
 			if(skinInfo==null)
 			{
-				Alert.show("ImageButton not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor);
+				Alert.show("ImageButton not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				return null;
 			}
 			
@@ -435,7 +435,7 @@ package com.gamerisker.manager
 			
 			if(skinInfo==null)
 			{
-				Alert.show("CheckBox not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor);
+				Alert.show("CheckBox not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				return null;
 			}
 			
@@ -460,7 +460,7 @@ package com.gamerisker.manager
 			
 			if(skinInfo==null)
 			{
-				Alert.show("RadioButton not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor);
+				Alert.show("RadioButton not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				return null;
 			}
 			
@@ -484,7 +484,7 @@ package com.gamerisker.manager
 			var skinInfo : Object = Tool.UpdateObjectProperty(s_sliderList[name]);
 			if(skinInfo==null)
 			{
-				Alert.show("Slider not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor);
+				Alert.show("Slider not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				return null;
 			}
 			
@@ -510,7 +510,7 @@ package com.gamerisker.manager
 			var skinInfo : Object = Tool.UpdateObjectProperty(s_uiframeList[name]);
 			if(skinInfo==null)
 			{
-				Alert.show("SkinFrame not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor);
+				Alert.show("SkinFrame not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				return null;
 			}	
 			
@@ -520,7 +520,7 @@ package com.gamerisker.manager
 
 			if(!skinInfo["skin"]){
 				
-				Alert.show("SkinFrame not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor);
+				Alert.show("SkinFrame not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				return null;
 			}
 			
@@ -541,7 +541,7 @@ package com.gamerisker.manager
 			
 			if(skinInfo==null)
 			{
-				Alert.show("SkinImage not found :" + name,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor);
+				Alert.show("SkinImage not found :" + name,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				return null;
 			}
 			var atlas : TextureAtlas = TexturesManager.GetAtlas(skinInfo["skinParent"]);
@@ -549,7 +549,7 @@ package com.gamerisker.manager
 			skinInfo["skin"] = atlas.getTexture(skinInfo["skin"]);
 			
 			if(!skinInfo["skin"]){
-				Alert.show("SkinImage not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor);
+				Alert.show("SkinImage not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				return null;
 			}
 			
@@ -568,7 +568,7 @@ package com.gamerisker.manager
 			var skinInfo : Object = Tool.UpdateObjectProperty(s_imagenumber[name]);
 			if(skinInfo==null)
 			{
-				Alert.show("ImageNumber not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor);
+				Alert.show("ImageNumber not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				return null;
 			}
 			var atlas : TextureAtlas = TexturesManager.GetAtlas(skinInfo["skinParent"]);
@@ -577,7 +577,7 @@ package com.gamerisker.manager
 			
 			if(!skinInfo["skin"]){
 				
-				Alert.show("ImageNumber not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor);
+				Alert.show("ImageNumber not found :" + name ,"SkinManager",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				return null;
 			}
 			

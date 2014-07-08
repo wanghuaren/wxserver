@@ -207,7 +207,7 @@ package com.gamerisker.manager
 			saveStream.writeBytes(binaryData);
 			saveStream.close();
 			
-			Alert.show("打包界面配置成功！", "打包成功", Alert.OK , RookieEditor.getInstante().Editor);
+			Alert.show("打包界面配置成功！", "打包成功", Alert.OK , RookieEditor.getInstante().Editor.panel);
 		}
 		
 		//======================================解压配置文件 ===========================
@@ -258,7 +258,7 @@ package com.gamerisker.manager
 				xmlStream.close();
 			}
 			
-			Alert.show("解包界面配置成功！", "解包成功", Alert.OK ,RookieEditor.getInstante().Editor);
+			Alert.show("解包界面配置成功！", "解包成功", Alert.OK ,RookieEditor.getInstante().Editor.panel);
 		}
 		
 		//======================================一键打包配置文件 ===========================
@@ -285,7 +285,7 @@ package com.gamerisker.manager
 			saveStream.writeBytes(binaryData);
 			saveStream.close();
 			
-			Alert.show("打包界面配置成功！", "打包成功", Alert.OK ,RookieEditor.getInstante().Editor);
+			Alert.show("打包界面配置成功！", "打包成功", Alert.OK ,RookieEditor.getInstante().Editor.panel);
 		}
 	}
 }

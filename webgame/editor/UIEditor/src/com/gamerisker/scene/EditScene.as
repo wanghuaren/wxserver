@@ -10,6 +10,8 @@ package com.gamerisker.scene
 	import com.gamerisker.manager.MouseManager;
 	import com.gamerisker.manager.MultipleManager;
 	import com.gamerisker.manager.TexturesManager;
+	import com.gamerisker.view.EditorScene;
+	import com.gamerisker.view.SelectWindow;
 	
 	import feathers.events.FeathersEventType;
 	
@@ -124,8 +126,10 @@ package com.gamerisker.scene
 				
 				function create(event:*):void
 				{
-					editor.x = posX - (editor.width >> 1);
-					editor.y = posY - (editor.height >> 1);
+//					editor.x = posX - (editor.width >> 1);
+//					editor.y = posY - (editor.height >> 1);
+					editor.x = SelectWindow.instance.panel.width+10;
+					editor.y = EditorScene.instance().panel.y+EditorScene.instance().panel.height+50;
 					
 					RookieEditor.getInstante().Operate.addCommand(new Command(Command.AddName));//记录命令
 					
@@ -389,7 +393,7 @@ package com.gamerisker.scene
 			
 			if(component==null)
 			{
-				Alert.show("修改层错误.","错误",Alert.OK,RookieEditor.getInstante().Editor);
+				Alert.show("修改层错误.","错误",Alert.OK,RookieEditor.getInstante().Editor.panel);
 				return;
 			}
 			var swapTarget : Editor;
@@ -465,7 +469,7 @@ package com.gamerisker.scene
 			}
 			else
 			{
-				Alert.show("没有控制组件","错误",4,RookieEditor.getInstante().Editor);
+				Alert.show("没有控制组件","错误",4,RookieEditor.getInstante().Editor.panel);
 			}
 		}
 		

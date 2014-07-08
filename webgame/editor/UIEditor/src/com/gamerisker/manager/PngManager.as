@@ -64,8 +64,8 @@ package com.gamerisker.manager
 					skin = SkinManager.getSkinInfo(value["name"],type);
 					_rang = getXml(skin["upSkin"],value["skinParent"]);
 					
-					if(!skin)Alert.show(value["name"]+":在SkinManager中没有找到.","",Alert.OK,RookieEditor.getInstante().Select);
-					if(!_rang)Alert.show(skin["upSkin"]+":在XML中没找到.","",Alert.OK,RookieEditor.getInstante().Select);
+					if(!skin)Alert.show(value["name"]+":在SkinManager中没有找到.","",Alert.OK,RookieEditor.getInstante().Select.panel);
+					if(!_rang)Alert.show(skin["upSkin"]+":在XML中没找到.","",Alert.OK,RookieEditor.getInstante().Select.panel);
 					
 					return getImage(_rang,skin["skinParent"]);
 				case "SkinFrame" : 
@@ -73,28 +73,28 @@ package com.gamerisker.manager
 					skin = SkinManager.getSkinInfo(value["name"],type);
 					_rang = getXml(skin["skin"],value["skinParent"]);
 					
-					if(!skin)Alert.show(value["name"]+":在SkinManager中没有找到.","",Alert.OK,RookieEditor.getInstante().Select);
-					if(!_rang)Alert.show(skin["upSkin"]+":在XML中没找到.","",Alert.OK,RookieEditor.getInstante().Select);
+					if(!skin)Alert.show(value["name"]+":在SkinManager中没有找到.","",Alert.OK,RookieEditor.getInstante().Select.panel);
+					if(!_rang)Alert.show(skin["upSkin"]+":在XML中没找到.","",Alert.OK,RookieEditor.getInstante().Select.panel);
 					
 					return getImage(_rang,skin["skinParent"]);
 				case "TitleWindow" : 
 					skin = SkinManager.getSkinInfo(value["name"],type);
 					_rang = getXml(skin["skin"],value["skinParent"]);
 					
-					if(!skin)Alert.show(value["name"]+":在SkinManager中没有找到.","",Alert.OK,RookieEditor.getInstante().Select);
-					if(!_rang)Alert.show(skin["upSkin"]+":在XML中没找到.","",Alert.OK,RookieEditor.getInstante().Select);
+					if(!skin)Alert.show(value["name"]+":在SkinManager中没有找到.","",Alert.OK,RookieEditor.getInstante().Select.panel);
+					if(!_rang)Alert.show(skin["upSkin"]+":在XML中没找到.","",Alert.OK,RookieEditor.getInstante().Select.panel);
 					
 					return getImage(_rang,skin["skinParent"]);
 				case "ImageNumber" :
 					skin = SkinManager.getSkinInfo(value["name"],type);
 					_rang = getXml(skin["skin"]+"0",value["skinParent"]);
 					
-					if(!skin)Alert.show(value["name"]+":在SkinManager中没有找到.","",Alert.OK,RookieEditor.getInstante().Select);
-					if(!_rang)Alert.show(skin["upSkin"]+":在XML中没找到.","",Alert.OK,RookieEditor.getInstante().Select);
+					if(!skin)Alert.show(value["name"]+":在SkinManager中没有找到.","",Alert.OK,RookieEditor.getInstante().Select.panel);
+					if(!_rang)Alert.show(skin["upSkin"]+":在XML中没找到.","",Alert.OK,RookieEditor.getInstante().Select.panel);
 					return getImage(_rang,skin["skinParent"]);
 			}
 			
-			Alert.show("没有找到资源类型,请查看代码.","",Alert.OK,RookieEditor.getInstante().Select);
+			Alert.show("没有找到资源类型,请查看代码.","",Alert.OK,RookieEditor.getInstante().Select.panel);
 			
 			return null;
 		}

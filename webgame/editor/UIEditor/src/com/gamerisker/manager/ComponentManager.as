@@ -76,7 +76,7 @@ package com.gamerisker.manager
 				case "List" : 
 					return new ListEditor;
 			}
-			Alert.show("ComponentManager : 没有找到组件","错误",4,RookieEditor.getInstante().Editor);
+			Alert.show("ComponentManager : 没有找到组件","错误",4,RookieEditor.getInstante().Editor.panel);
 			return null;
 		}
 	}
