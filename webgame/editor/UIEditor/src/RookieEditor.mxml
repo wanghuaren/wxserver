@@ -58,6 +58,8 @@
 			
 			private function Init() : void
 			{
+				panel.titleDisplay["parent"].visible=false;
+				stage.addEventListener(Event.RESIZE,OnResizeStage);
 				m_Rookie = this;
 				
 				visible = false;
@@ -305,8 +307,8 @@
 			
 			public function setResizeStage(w:int,h:int) : void
 			{
-				_width.text = String(w);
-				_height.text = String(h);
+//				_width.text = String(w);
+//				_height.text = String(h);
 			}
 			
 			public function OnCloseWindow(event : Event) : void
@@ -454,10 +456,18 @@
 				Help.move(_x,_y);
 			}
 			
-			private function OnResizeStage() : void
+			private function OnResizeStage(e:Event) : void
 			{
-				Editor.panel.width = int(_width.text);
-				Editor.panel.height = int(_height.text);
+				panel.width=stage.stageWidth;
+				SelectComponet.height=(stage.stageHeight-panel.height)*3/5;
+				TreePanel.height=(stage.stageHeight-panel.height)*2/5;
+				EditScene.width=stage.stageWidth-SelectComponet.width-PropertyPanel.width;
+				TreePanel.y=SelectComponet.y+SelectComponet.height;
+				PropertyPanel.x=EditScene.x+EditScene.width;
+				PropertyPanel.height=(stage.stageHeight-panel.height)*4/5;
+				HistoryPanel.height=(stage.stageHeight-panel.height)/5;
+				HistoryPanel.x=PropertyPanel.x;
+				HistoryPanel.y=PropertyPanel.y+PropertyPanel.height;
 			}
 			
 			private function OnStartDrag(event : MouseEvent) : void
@@ -467,7 +477,7 @@
 			
 			private function OnChangeCheck(event : Event) : void
 			{
-				RookieEditor.getInstante().Editor.setTitleBar(check.selected);
+//				RookieEditor.getInstante().Editor.setTitleBar(check.selected);
 			}
 			
 			private function OnChangeCheckFps(event : Event) : void
@@ -482,57 +492,30 @@
 			}
 		]]>
 	</fx:Script>
-	<s:TitleWindow id="panel" x="0" y="0" width="100%" height="151" close="OnCloseWindow(event)"
-				   dropShadowVisible="false" mouseDown="OnStartDrag(event)" title="工具栏">
-		<s:HGroup width="100%" height="22" x="10" y="2" >
-			<s:Button label="组件列表" click="OnOpenComponent()" toolTip="打开组件列表"/>
-			<s:Button label="组件属性" click="OnOpenProperty()" toolTip="打开组件属性"/>
-			<s:Button label="组件树" click="OnOpenTree()" toolTip="打开组件树"/>
-			<s:Button label="打开资源目录" click="OnOpenSource(event)" toolTip="打开关于窗口"/>
-			<s:Button label="编辑区" click="OnOpenEditor()"  toolTip="打开编辑窗口"/>
-		</s:HGroup>
-		<s:HGroup width="100%" height="24" x="10" y="26" >
-			<s:Button label="保存" click="OnSave()" toolTip="保存界面(ctrl+s)"/>
-			<s:Button label="打开" click="OnOpen()"  toolTip="保存界面(ctrl+o)"/>
-			<s:Button label="打包" click="OnPack()"  toolTip="保存界面(ctrl+f)"/>
-			<s:Button label="解包" click="OnPrasePacke()"  toolTip="保存界面(ctrl+r)"/>
-			<s:Button label="一键打包" click="OnKeyPacker()" toolTip="一键打包所有界面"/>
-			<s:Button label="显示源码" click="OnShowCode()"  toolTip="打开源码显示窗口"/>
-			<s:Button label="设置" click="OnSetSystem()" toolTip="打开项目系统设置"/>
-			<s:Button label="操作记录" click="ShowHistory()" toolTip="打开操作历史记录"/>
-			<s:Button label="关于" click="OnShowHelp()" toolTip="打开关于窗口"/>
-		</s:HGroup>
-		<s:HGroup x="10" y="52" width="100%" height="27">
-			<s:Button label="清空编辑区" click="OnClear()" toolTip="清空编辑区域中的所有组件"/>
-			<s:Button label="对齐" click="OnShowAlign()" toolTip="打开对齐窗口"/>
-			<s:Label width="65" text="舞台宽高 : "/>
-			<s:TextInput id="_width" width="50" enter="OnResizeStage()" text="960"
-						 toolTip="修改编辑区宽度（回车确认）"/>
-			<s:Label width="50" text=" x "/>
-			<s:TextInput id="_height" width="50" enter="OnResizeStage()" text="640"
-						 toolTip="修改编辑区高度（回车确认）"/>
-			<s:CheckBox id="check" label="编辑区标题栏" change="OnChangeCheck(event)" selected="true"/>
-			<s:CheckBox id="check0" label="fps显示" change="OnChangeCheckFps(event)" selected="false"/>
-		</s:HGroup>
-		<s:TitleWindow id="EditScene" x="0" y="86" width="899" height="33" dropShadowVisible="false"
-					   skinClass="spark.skins.spark.TitleWindowSkin" title="编辑区">
-		</s:TitleWindow>
-	</s:TitleWindow>
-	<s:TitleWindow id="SelectComponet" x="0" y="149" width="158" height="277"
-				   dropShadowVisible="false" title="选择组件">
-		<s:Button name="Button" x="15" y="15" width="120" label="Button" click="SelectWindow.instance.OnComponentClick(event)"/>
-		<s:Button name="CheckBox" x="15" y="40" width="120" label="CheckBox" click="SelectWindow.instance.OnComponentClick(event)"/>
-		<s:Button name="Label" x="15" y="65" width="120" label="Label" click="SelectWindow.instance.OnComponentClick(event)"/>
-		<s:Button name="TitleWindow" x="15" y="90" width="120" label="TitleWindow" click="SelectWindow.instance.OnComponentClick(event)"/>
-		<s:Button name="RadioButton" x="15" y="115" width="120" label="RadioButton" click="SelectWindow.instance.OnComponentClick(event)"/>
-		<s:Button name="Slider" x="15" y="140" width="120" label="Slider" click="SelectWindow.instance.OnComponentClick(event)"/>
-		<s:Button name="SkinImage" x="15" y="164" width="120" label="SkinImage" click="SelectWindow.instance.OnComponentClick(event)"/>
-		<s:Button name="List" x="15" y="189" width="120" label="List" click="SelectWindow.instance.OnComponentClick(event)"/>
-		<s:Button x="17" y="214" width="120" label="清除" click="SelectWindow.instance.OnComponentRemove(event)" toolTip="清除当前绑定在鼠标上的组件"/>
-	</s:TitleWindow>
-	<s:TitleWindow id="PropertyPanel" x="669" y="149" width="231" height="200"
-				   dropShadowVisible="false">
-		<s:DataGrid x="0" y="0" id="dataGrid" requestedRowCount="2" width="100%" height="100%" mouseDown="{event.stopPropagation()}" editable="true" doubleClickEnabled="true" doubleClick="PropertyWindow.instance().OnDoubleClick(event)" styleName="myDataGrid">
+	<s:Panel id="SelectComponet" x="0" y="96" width="171" height="302" cornerRadius="0"
+			 dropShadowVisible="false" title="选择组件">
+		<s:Button name="Button" x="29" y="0" width="120" label="Button" click="SelectWindow.instance.OnComponentClick(event)"/>
+		<s:Button name="CheckBox" x="29" y="25" width="120" label="CheckBox" click="SelectWindow.instance.OnComponentClick(event)"/>
+		<s:Button name="Label" x="29" y="50" width="120" label="Label" click="SelectWindow.instance.OnComponentClick(event)"/>
+		<s:Button name="TitleWindow" x="29" y="75" width="120" label="TitleWindow" click="SelectWindow.instance.OnComponentClick(event)"/>
+		<s:Button name="RadioButton" x="29" y="100" width="120" label="RadioButton" click="SelectWindow.instance.OnComponentClick(event)"/>
+		<s:Button name="Slider" x="29" y="125" width="120" label="Slider" click="SelectWindow.instance.OnComponentClick(event)"/>
+		<s:Button name="SkinImage" x="29" y="149" width="120" label="SkinImage" click="SelectWindow.instance.OnComponentClick(event)"/>
+		<s:Button name="List" x="29" y="174" width="120" label="List" click="SelectWindow.instance.OnComponentClick(event)"/>
+		<s:Button x="31" y="199" width="120" label="清除" click="SelectWindow.instance.OnComponentRemove(event)" toolTip="清除当前绑定在鼠标上的组件"/>
+	</s:Panel>
+	<s:Panel id="TreePanel" x="0" y="397" width="171" height="179" cornerRadius="0"
+			 dropShadowVisible="false" title="舞台组件列表">
+		<mx:Tree id="myTree" x="0" y="-1" width="100%" height="141"
+				 click="TreeWindow.instance().treeChanged(event);"
+				 iconFunction="TreeWindow.instance().IconFunction"
+				 itemRenderer="com.gamerisker.view.TreeRender"
+				 labelFunction="TreeWindow.instance().LabelFunction"
+				 mouseDown="TreeWindow.instance().OnStop(event)" showRoot="false" styleName="myTree"/>
+	</s:Panel>
+	<s:Panel id="PropertyPanel" x="649" y="96" width="250" height="281" cornerRadius="0"
+			 dropShadowVisible="false" title="属性">
+		<s:DataGrid x="1" y="1" id="dataGrid" requestedRowCount="2" width="100%" height="100%" mouseDown="{event.stopPropagation()}" editable="true" doubleClickEnabled="true" doubleClick="PropertyWindow.instance().OnDoubleClick(event)" styleName="myDataGrid">
 			<s:columns>
 				<mx:ArrayList>
 					<s:GridColumn id="column1" dataField="Name" headerText="属性名" editable="false"/>
@@ -540,17 +523,12 @@
 				</mx:ArrayList>
 			</s:columns>
 		</s:DataGrid>
-	</s:TitleWindow>
-	<s:TitleWindow id="TreePanel" x="0" y="426" width="158" height="147" dropShadowVisible="false"
-				   title="舞台组件列表">
-		<mx:Tree id="myTree" width="100%" height="100%" showRoot="false" click="TreeWindow.instance().treeChanged(event);" labelFunction="TreeWindow.instance().LabelFunction" iconFunction="TreeWindow.instance().IconFunction"
-				 mouseDown="TreeWindow.instance().OnStop(event)"
-				 styleName="myTree"
-				 itemRenderer="com.gamerisker.view.TreeRender"/>
-	</s:TitleWindow>
-	<s:TitleWindow id="HistoryPanel" x="669" y="357" width="231" height="218"
-				   dropShadowVisible="false" title="历史动作">
-		<s:List id="list" width="100%" height="100%" change="HistroyWindow.instance().OnChangeEvent(event)" mouseDown="{event.stopPropagation();}">
+	</s:Panel>
+	<s:Panel id="HistoryPanel" x="650" y="375" width="250" height="200" cornerRadius="0"
+			 dropShadowVisible="false" title="历史动作">
+		<s:List id="list" x="1" y="-3" width="100%" height="100%"
+				change="HistroyWindow.instance().OnChangeEvent(event)"
+				mouseDown="{event.stopPropagation();}">
 			<s:itemRenderer>
 				<fx:Component>
 					<s:ItemRenderer>
@@ -559,5 +537,26 @@
 				</fx:Component>
 			</s:itemRenderer>
 		</s:List>
-	</s:TitleWindow>
+	</s:Panel>
+	<s:Panel id="EditScene" x="169" y="96" width="482" height="32" cornerRadius="0"
+			 dropShadowVisible="false" title="编辑区">
+	</s:Panel>
+	<s:Panel id="panel" x="0" y="0" width="900" height="97" cornerRadius="0"
+			 dropShadowVisible="false" title="工具栏">
+		<s:HGroup width="720" height="24" x="5" y="0" >
+			<s:Button label="保存" click="OnSave()" toolTip="保存界面(ctrl+s)"/>
+			<s:Button label="打开" click="OnOpen()"  toolTip="保存界面(ctrl+o)"/>
+			<s:Button label="打包" click="OnPack()"  toolTip="保存界面(ctrl+f)"/>
+			<s:Button label="解包" click="OnPrasePacke()"  toolTip="保存界面(ctrl+r)"/>
+			<s:Button label="一键打包" click="OnKeyPacker()" toolTip="一键打包所有界面"/>
+			<s:Button label="显示源码" click="OnShowCode()"  toolTip="打开源码显示窗口"/>
+			<s:Button label="设置" click="OnSetSystem()" toolTip="打开项目系统设置"/>
+			<s:Button label="关于" click="OnShowHelp()" toolTip="打开关于窗口"/>
+		</s:HGroup>
+		<s:HGroup x="4" y="32" width="716" height="27">
+			<s:Button label="清空编辑区" click="OnClear()" toolTip="清空编辑区域中的所有组件"/>
+			<s:Button label="对齐" click="OnShowAlign()" toolTip="打开对齐窗口"/>
+			<s:CheckBox id="check0" label="fps显示" change="OnChangeCheckFps(event)" selected="false"/>
+		</s:HGroup>
+	</s:Panel>
 </s:WindowedApplication>

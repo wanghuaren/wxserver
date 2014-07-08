@@ -45,7 +45,7 @@
   <flashCatalyst validateFlashCatalystCompatibility="false"/>
   <buildTargets>
     <buildTarget buildTargetName="default">
-      <airSettings airCertificatePath="" airTimestamp="true" anePathSet="true" version="1">
+      <airSettings airCertificatePath="C:/Users/wanghuaren/Documents/GitHub/test/trunk/sign.p12" airTimestamp="true" anePathSet="true" version="1">
         <airExcludes/>
         <anePaths/>
       </airSettings>
@@ -53,4 +53,3 @@
     </buildTarget>
   </buildTargets>
 </actionScriptProperties>
-

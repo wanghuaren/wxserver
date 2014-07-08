@@ -8,20 +8,20 @@ package com.gamerisker.view
 	import mx.collections.ArrayList;
 	
 	import spark.components.List;
-	import spark.components.TitleWindow;
+	import spark.components.Panel;
 
 	public class HistroyWindow
 	{
-		public var panel:TitleWindow
+		public var panel:Panel
 		private var list:List;
 		private static var _instance:HistroyWindow;
-		public static function instance(value:TitleWindow=null):HistroyWindow{
+		public static function instance(value:Panel=null):HistroyWindow{
 			if(_instance==null){
 				_instance=new HistroyWindow(value);
 			}
 			return _instance;
 		}
-		public function HistroyWindow(value:TitleWindow)
+		public function HistroyWindow(value:Panel)
 		{
 			panel=value;
 			list=value.getElementAt(0) as List;

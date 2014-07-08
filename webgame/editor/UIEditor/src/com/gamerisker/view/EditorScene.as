@@ -1,30 +1,32 @@
 package com.gamerisker.view
 {
+	import com.gamerisker.core.Define;
+	
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 	
-	import spark.components.TitleWindow;
-	import com.gamerisker.core.Define;
-	
 	import spark.components.Group;
+	import spark.components.Panel;
+	import spark.components.TitleWindow;
 	
 	import starling.core.Starling;
 	import starling.events.Event;
 	import starling.utils.HAlign;
 	import starling.utils.VAlign;
+
 	public class EditorScene
 	{
-		public var panel:TitleWindow
+		public var panel:Panel
 		private static var _instance:EditorScene;
-		public static function instance(value:TitleWindow=null):EditorScene{
+		public static function instance(value:Panel=null):EditorScene{
 			if(_instance==null){
 				_instance=new EditorScene(value);
 			}
 			return _instance;
 		}
-		public function EditorScene(value:TitleWindow)
+		public function EditorScene(value:Panel)
 		{
 			panel=value;
 			Init();
@@ -60,27 +62,27 @@ package com.gamerisker.view
 		
 		public function setTitleBar(value : Boolean) : void
 		{
-			var child : DisplayObject = panel.skin["_TitleWindowSkin_Group1"].getChildAt(2)
-			child.visible = value;
+//			var child : DisplayObject = panel.skin["_TitleWindowSkin_Group1"].getChildAt(2)
+//			child.visible = value;
 		}
 		
 		private function Init() : void
 		{
-			var child : DisplayObject = panel.skin["_TitleWindowSkin_Group1"].getChildAt(1)
-			child.visible = false;
+//			var child : DisplayObject = panel.skin["_TitleWindowSkin_Group1"].getChildAt(1)
+//			child.visible = false;
 			
 			Start();
 		}
 		
 		private function OnStartDrag(event : MouseEvent) : void
 		{
-			var group : Group = event.target as Group;
-			
-			if(panel.moveArea == group)
-			{
+//			var group : Group = event.target as Group;
+//			
+//			if(panel.moveArea == group)
+//			{
 				event.stopImmediatePropagation();
 //				this.nativeWindow.startMove();
-			}
+//			}
 			
 		}
 		

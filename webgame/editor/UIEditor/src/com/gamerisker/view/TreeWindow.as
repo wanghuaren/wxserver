@@ -5,6 +5,7 @@ package com.gamerisker.view
 	import com.gamerisker.manager.ControlManager;
 	import com.gamerisker.manager.TexturesManager;
 	
+	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.utils.setTimeout;
@@ -13,16 +14,17 @@ package com.gamerisker.view
 	import mx.controls.Tree;
 	
 	import spark.components.CheckBox;
+	import spark.components.Panel;
 	import spark.components.TitleWindow;
 	
 	import starling.display.Sprite;
 
 	public class TreeWindow
 	{
-		public var panel:TitleWindow
+		public var panel:Panel;
 		private var myTree:Tree;
 		private static var _instance:TreeWindow;
-		public static function instance(value:TitleWindow=null):TreeWindow{
+		public static function instance(value:Panel=null):TreeWindow{
 			if(_instance==null){
 				_instance=new TreeWindow(value);
 			}
@@ -32,7 +34,7 @@ package com.gamerisker.view
 			}
 			return _instance;
 		}
-		public function TreeWindow(value:TitleWindow)
+		public function TreeWindow(value:Panel)
 		{
 			if(value!=null){
 				panel=value;

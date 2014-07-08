@@ -6,11 +6,12 @@ package com.gamerisker.view
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	
+	import spark.components.Panel;
 	import spark.components.TitleWindow;
 
 	public class SelectWindow
 	{
-		public var panel:TitleWindow;
+		public var panel:Panel;
 		private static var _instance:SelectWindow;
 		public static function get instance():SelectWindow{
 			if(_instance==null){

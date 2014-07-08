@@ -10,6 +10,7 @@ package com.gamerisker.view
 	import mx.collections.ArrayList;
 	import mx.managers.PopUpManager;
 	
+	import spark.components.Panel;
 	import spark.components.TitleWindow;
 
 	public class PropertyWindow
@@ -18,15 +19,15 @@ package com.gamerisker.view
 		private var m_rowIndex : int;
 		
 		private var m_panel : EditorWindow = new EditorWindow;
-		public var panel:TitleWindow
+		public var panel:Panel
 		private static var _instance:PropertyWindow;
-		public static function instance(value:TitleWindow=null):PropertyWindow{
+		public static function instance(value:Panel=null):PropertyWindow{
 			if(_instance==null){
 				_instance=new PropertyWindow(value);
 			}
 			return _instance;
 		}
-		public function PropertyWindow(value:TitleWindow)
+		public function PropertyWindow(value:Panel)
 		{
 			panel=value;
 		}
