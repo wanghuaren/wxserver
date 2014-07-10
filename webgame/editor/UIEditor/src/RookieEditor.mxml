@@ -358,7 +358,7 @@
 				}
 				else
 				{
-					Alert.show("没有控制组件","错误",Alert.OK,RookieEditor.EditorW.panel);
+					Alert.show("没有控制组件","错误",Alert.OK,EditScene);
 				}
 			}
 			

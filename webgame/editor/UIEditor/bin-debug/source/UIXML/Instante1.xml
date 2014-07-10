@@ -1,1 +1,3 @@
-<SkinImage id="Instante2" skin="mail_lihe" source="file:///C:/Users/wanghuaren/Documents/GitHub/test/trunk/webgame/editor/UIEditor/bin-debug/source/UISource/images/aeon_desktop.png" x="430" y="148" alpha="1" enabled="true" rotation="0"/>
+<TitleWindow id="Instante1" x="201" y="184" skin="default_beijing" width="420" height="270" fontSize="12" textWidth="100" textHeight="20" alpha="1" textX="10" textY="10" title="TitleWindow" enabled="true">
+  <Button id="Instante2" label="Button" skin="default_button1" x="182" y="164" width="100" height="50" enabled="true" alpha="1"/>
+</TitleWindow>
