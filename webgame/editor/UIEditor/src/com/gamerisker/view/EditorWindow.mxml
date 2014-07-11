@@ -27,6 +27,7 @@
 					m_curEditor[m_name] =(m_input.text)
 				}
 				
+				PropertyWindow.instance().updatePropVeiw();
 				RookieEditor.getInstante().Operate.addCommand(new Command(Command.ChangeName));//记录命令
 				RookieEditor.getInstante().Tree.update();
 				

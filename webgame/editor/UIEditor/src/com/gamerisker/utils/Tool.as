@@ -92,9 +92,13 @@ package com.gamerisker.utils
 				for (var i:int=numChildren - 1; i >= 0; --i)
 				{
 					const child:starling.display.DisplayObject=container.getChildAt(i);
-					if (child as Editor && display.hitTest(display.globalToLocal(localPoint), forTouch))
+					if (child as Editor)
 					{
-						to.push(child);
+						var m_rect:Rectangle=new Rectangle(child.x, child.y, child.width, child.height);
+						if (m_rect.containsPoint(container.globalToLocal(localPoint)))
+						{
+							to.push(child);
+						}
 					}
 					findObjectsUnderPoint(child, localPoint, forTouch, to);
 				}

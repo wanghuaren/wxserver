@@ -1,5 +1,6 @@
 package com.gamerisker.view
 {
+	import com.gamerisker.core.Define;
 	import com.gamerisker.editor.Editor;
 	import com.gamerisker.manager.ControlManager;
 	
@@ -10,6 +11,7 @@ package com.gamerisker.view
 	import mx.collections.ArrayList;
 	import mx.managers.PopUpManager;
 	
+	import spark.components.DataGrid;
 	import spark.components.Panel;
 	import spark.components.TitleWindow;
 
@@ -19,17 +21,17 @@ package com.gamerisker.view
 		private var m_rowIndex : int;
 		
 		private var m_panel : EditorWindow = new EditorWindow;
-		public var panel:Panel
+		public var myDataGrid:DataGrid;
 		private static var _instance:PropertyWindow;
-		public static function instance(value:Panel=null):PropertyWindow{
+		public static function instance(value:DataGrid=null):PropertyWindow{
 			if(_instance==null){
 				_instance=new PropertyWindow(value);
 			}
 			return _instance;
 		}
-		public function PropertyWindow(value:Panel)
+		public function PropertyWindow(value:DataGrid)
 		{
-			panel=value;
+			myDataGrid=value;
 		}
 		
 		private function Init() : void
@@ -47,7 +49,7 @@ package com.gamerisker.view
 		{
 			m_target = component;
 			
-			if(component)panel.title ="属性 : " + m_target.type;
+//			if(component)panel.title ="属性 : " + m_target.type;
 			
 			updatePropVeiw();
 		}
@@ -95,14 +97,15 @@ package com.gamerisker.view
 		 * 更新视图属性 
 		 * 
 		 */		
-		private function updatePropVeiw() : void
+		public function updatePropVeiw() : void
 		{
+			if(myDataGrid==null) return;
 			if(!m_target)
 			{
-				panel.getElementAt(0)["dataProvider"] = new ArrayList;
+				myDataGrid.dataProvider = new ArrayList;
 				return;
 			}
-			panel.getElementAt(0)["dataProvider"] = m_target.toArrayList();
+			myDataGrid.dataProvider = m_target.toArrayList();
 			
 			//				RookieEditor.getInstante().Tree.update();		//Tree 必须在Code之上
 			RookieEditor.getInstante().Code.update();
@@ -110,7 +113,7 @@ package com.gamerisker.view
 		
 		public function OnDoubleClick(event : MouseEvent) : void
 		{
-			var selected : Object =panel.getElementAt(0)["selectedItem"];
+			var selected : Object =myDataGrid.selectedItem;
 			
 			if(selected)
 			{
@@ -135,7 +138,7 @@ package com.gamerisker.view
 //			m_panel.x = (this.width - m_panel.width) >> 1;
 //			m_panel.y = (this.height - m_panel.height) >> 1;
 			
-			PopUpManager.addPopUp(m_panel,panel);
+			PopUpManager.addPopUp(m_panel,myDataGrid);
 			
 			m_panel.setTarget(value,target);
 		}

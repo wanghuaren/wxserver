@@ -119,7 +119,7 @@ package com.gamerisker.manager
 		 */		
 		public function getConfigUrl() : String
 		{
-//			return "D:\\WorkSpace\\Example\\src";
+			s_ConfigUrl=File.applicationDirectory.nativePath+"/source/XMLSource/";
 			return s_ConfigUrl;//.replace(/\\/g, "/");	
 		}
 		

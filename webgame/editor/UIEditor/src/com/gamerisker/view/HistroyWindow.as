@@ -12,19 +12,21 @@ package com.gamerisker.view
 
 	public class HistroyWindow
 	{
-		public var panel:Panel
+//		public var panel:Panel
 		private var list:List;
 		private static var _instance:HistroyWindow;
-		public static function instance(value:Panel=null):HistroyWindow{
+		public static function instance(value:List=null):HistroyWindow{
 			if(_instance==null){
 				_instance=new HistroyWindow(value);
 			}
+			if(value!=null){
+				_instance.list=value;
+			}
 			return _instance;
 		}
-		public function HistroyWindow(value:Panel)
+		public function HistroyWindow(value:List)
 		{
-			panel=value;
-			list=value.getElementAt(0) as List;
+			list=value;
 		}
 		private function Init(event : Event) : void
 		{
@@ -33,6 +35,7 @@ package com.gamerisker.view
 		
 		public function update() : void
 		{
+			if(list==null) return;
 			list.dataProvider = new ArrayList(RookieEditor.getInstante().Operate.getList());
 		}
 		

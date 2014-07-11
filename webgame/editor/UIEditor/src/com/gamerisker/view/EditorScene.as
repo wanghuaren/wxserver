@@ -8,6 +8,8 @@ package com.gamerisker.view
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 
+	import mx.controls.MenuBar;
+
 	import spark.components.Group;
 	import spark.components.Panel;
 	import spark.components.TitleWindow;
@@ -19,10 +21,10 @@ package com.gamerisker.view
 
 	public class EditorScene
 	{
-		public var panel:Panel
+		public var panel:MenuBar
 		private static var _instance:EditorScene;
 
-		public static function instance(value:Panel=null):EditorScene
+		public static function instance(value:MenuBar=null):EditorScene
 		{
 			if (_instance == null)
 			{
@@ -31,7 +33,7 @@ package com.gamerisker.view
 			return _instance;
 		}
 
-		public function EditorScene(value:Panel)
+		public function EditorScene(value:MenuBar)
 		{
 			panel=value;
 			Init();
@@ -114,7 +116,7 @@ package com.gamerisker.view
 		{
 			if (Define.stg && panel.stage && mStarling)
 			{
-				var m_rect:Rectangle=new Rectangle(panel.x + 10, panel.y + panel.height+10, panel.width - 20, panel.stage.stageHeight - panel.y - panel.height - 20);
+				var m_rect:Rectangle=new Rectangle(SelectWindow.instance.panel.width + 10, SelectWindow.instance.panel.y + 10, panel.stage.stageWidth - SelectWindow.instance.panel.width - 20, panel.stage.stageHeight - panel.height - 20);
 				mStarling.viewPort=m_rect;
 				mStarling.stage.stageWidth=m_rect.width;
 				mStarling.stage.stageHeight=m_rect.height;

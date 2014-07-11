@@ -5,7 +5,6 @@ package com.gamerisker.view
 	import com.gamerisker.manager.ControlManager;
 	import com.gamerisker.manager.TexturesManager;
 	
-	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.utils.setTimeout;
@@ -21,24 +20,21 @@ package com.gamerisker.view
 
 	public class TreeWindow
 	{
-		public var panel:Panel;
 		private var myTree:Tree;
 		private static var _instance:TreeWindow;
-		public static function instance(value:Panel=null):TreeWindow{
+		public static function instance(value:Tree=null):TreeWindow{
 			if(_instance==null){
 				_instance=new TreeWindow(value);
 			}
 			if(value!=null){
-				_instance.panel=value;
-				_instance.myTree=value.getElementAt(0) as Tree;
+				_instance.myTree=value;
 			}
 			return _instance;
 		}
-		public function TreeWindow(value:Panel)
+		public function TreeWindow(value:Tree)
 		{
 			if(value!=null){
-				panel=value;
-				myTree=value.getElementAt(0) as Tree;
+				myTree=value;
 			}
 		}
 		
@@ -114,6 +110,7 @@ package com.gamerisker.view
 		
 		public function update() : void
 		{
+			if(myTree==null)return;
 			var index:int = 0;
 			var component : Editor;
 			var xmlString : String = "";
@@ -173,7 +170,7 @@ package com.gamerisker.view
 				myTree.dataProvider = null;
 				myTree.dataProvider = xmlList;
 				
-				myTree.validateNow();
+//				myTree.validateNow();
 				myTree.invalidateList();
 				
 				setTimeout(expandItem,100);

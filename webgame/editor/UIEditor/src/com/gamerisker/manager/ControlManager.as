@@ -12,7 +12,9 @@ package com.gamerisker.manager
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Shape;
+	import flash.geom.Matrix;
 	import flash.geom.Point;
+	import flash.text.ReturnKeyLabel;
 
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -59,11 +61,11 @@ package com.gamerisker.manager
 		{
 			var box:flash.display.Shape=new flash.display.Shape;
 			box.graphics.beginFill(0xff0000, 1);
-			box.graphics.drawRect(0, 0, 10, 10);
+			box.graphics.drawRect(0, 0, 5, 5);
 			box.graphics.endFill();
 			var bitmap:flash.display.Bitmap=new flash.display.Bitmap;
-			var bitmapdata:flash.display.BitmapData=new flash.display.BitmapData(6, 6);
-			bitmapdata.draw(box);
+			var bitmapdata:flash.display.BitmapData=new flash.display.BitmapData(20, 20, true, 0);
+			bitmapdata.draw(box, new Matrix(1, 0, 0, 1, 7, 7));
 			bitmap.bitmapData=bitmapdata;
 			leftTopBox=starling.display.Image.fromBitmap(bitmap);
 			leftBottomBox=starling.display.Image.fromBitmap(bitmap);
@@ -465,7 +467,7 @@ package com.gamerisker.manager
 			{
 				return;
 			}
-			if (value.length > 1)
+			if (value.length > 0)
 			{
 				var m_childPoint:Point;
 				var m_content1:Editor;
@@ -504,6 +506,11 @@ package com.gamerisker.manager
 					{
 						addEditor(m_content2);
 					}
+					else
+					{
+						removeAddEditor(m_editor.parent as Editor);
+
+					}
 				}
 			}
 		}
@@ -513,19 +520,21 @@ package com.gamerisker.manager
 			return value.globalToLocal(mousePoint);
 		}
 
-		private static function removeAddEditor(value1:Editor, value2:Editor):void
+		private static function removeAddEditor(value1:Editor, value2:Editor=null):void
 		{
+			if (value1 == null)
+				return;
 			var m_childPoint:Point=getComponetPoint(value1);
-			if (m_childPoint.x < 0 || m_childPoint.y < 0 || value1.width > m_childPoint.x || value1.height > m_childPoint.y)
+			if (m_childPoint.x < 0 || m_childPoint.y < 0 || value1.width < m_childPoint.x || value1.height < m_childPoint.y)
 			{
 				value1.removeEditor(m_editor);
 				Define.editorContainer.addChild(m_editor);
-				m_editor.x=touch.globalX;
-				m_editor.y=touch.globalY;
-			}
-			if (value2 != null)
-			{
-				addEditor(value2);
+				m_editor.x=touch.globalX - (m_editor.width >> 1);
+				m_editor.y=touch.globalY - (m_editor.height >> 1);
+				if (value2 != null)
+				{
+					addEditor(value2);
+				}
 			}
 		}
 
@@ -533,8 +542,8 @@ package com.gamerisker.manager
 		{
 			var m_childPoint:Point=getComponetPoint(value);
 			value.addEditor(m_editor);
-			m_editor.x=m_childPoint.x;
-			m_editor.y=m_childPoint.y;
+			m_editor.x=m_childPoint.x - (m_editor.width >> 1);
+			m_editor.y=m_childPoint.y - (m_editor.height >> 1);
 		}
 
 		public static function ResetComponent():void
@@ -553,20 +562,17 @@ package com.gamerisker.manager
 			if (!m_editor)
 				return;
 
-			changedPoint(leftTopBox, -leftTopBox.width, -leftTopBox.height);
-			changedPoint(leftBottomBox, -leftBottomBox.width, m_editor.height);
-			changedPoint(rightBottomBox, m_editor.width, m_editor.height);
-			changedPoint(rightTopBox, m_editor.width, -rightTopBox.height);
+			changedPoint(leftTopBox, -leftTopBox.width / 2, -leftTopBox.height / 2);
+			changedPoint(leftBottomBox, -leftBottomBox.width / 2, m_editor.height - leftBottomBox.height / 2);
+			changedPoint(rightBottomBox, m_editor.width - rightBottomBox.width / 2, m_editor.height - rightBottomBox.height / 2);
+			changedPoint(rightTopBox, m_editor.width - rightTopBox.width / 2, -rightTopBox.height / 2);
 			changedPoint(centerBox, (m_editor.width - centerBox.width) / 2, (m_editor.height - centerBox.height) / 2);
-			changedPoint(leftCenterBox, -leftCenterBox.width, (m_editor.height - leftCenterBox.height) / 2);
-			changedPoint(rightCenterBox, m_editor.width, (m_editor.height - rightCenterBox.height) / 2);
-			changedPoint(topCenterBox, (m_editor.width - topCenterBox.width) / 2, -topCenterBox.height);
-			changedPoint(bottomCenterBox, (m_editor.width - bottomCenterBox.width) / 2, m_editor.height);
+			changedPoint(leftCenterBox, -leftCenterBox.width / 2, (m_editor.height - leftCenterBox.height) / 2);
+			changedPoint(rightCenterBox, m_editor.width - rightCenterBox.width / 2, (m_editor.height - rightCenterBox.height) / 2);
+			changedPoint(topCenterBox, (m_editor.width - topCenterBox.width) / 2, -topCenterBox.height / 2);
+			changedPoint(bottomCenterBox, (m_editor.width - bottomCenterBox.width) / 2, m_editor.height - bottomCenterBox.height / 2);
 			function changedPoint(box:Image, px:Number, py:Number):void
 			{
-
-				var point:Point=m_editor.localToGlobal(new Point(px, py));
-
 				box.x=px;
 				box.y=py;
 			}
@@ -581,7 +587,8 @@ package com.gamerisker.manager
 		private static function GetOffsetXY(event:TouchEvent):Point
 		{
 			var touch:Touch=event.getTouch(Define.starlingStg);
-
+			if (touch == null)
+				return null;
 			if (touch.phase == TouchPhase.MOVED)
 			{
 				return new Point(touch.globalX - touch.previousGlobalX, touch.globalY - touch.previousGlobalY);
