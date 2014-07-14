@@ -20,6 +20,8 @@ package com.gamerisker.manager
 		
 		[Embed(source="../../../ComponentIcon/Button.jpg")] 
 		public static const ButtonIcon:Class;
+		[Embed(source="../../../ComponentIcon/TabBar.jpg")] 
+		public static const TabBarIcon:Class;
 		[Embed(source="../../../ComponentIcon/ImageButton.jpg")] 
 		public static const ImageButtonIcon:Class;
 		[Embed(source="../../../ComponentIcon/CheckBox.jpg")] 

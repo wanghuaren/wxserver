@@ -9,7 +9,10 @@ package com.gamerisker.manager
 	import com.gamerisker.editor.RadioButtonEditor;
 	import com.gamerisker.editor.SkinImageEditor;
 	import com.gamerisker.editor.SliderEditor;
+	import com.gamerisker.editor.TabBarEditor;
 	import com.gamerisker.editor.TitleWindowEditor;
+	
+	import feathers.controls.TabBar;
 	
 	import mx.controls.Alert;
 	
@@ -75,6 +78,8 @@ package com.gamerisker.manager
 					return new SkinImageEditor;
 				case "List" : 
 					return new ListEditor;
+				case "TabBar" : 
+					return new TabBarEditor;
 			}
 			Alert.show("ComponentManager : 没有找到组件","错误",4,RookieEditor.getInstante().Editor.panel);
 			return null;
