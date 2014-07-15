@@ -38,13 +38,6 @@ package com.gamerisker.view
 		
 		private function Init(event : Event = null) : void
 		{
-			var tab:TabBarEditor=new TabBarEditor;
-		tab.name="T";
-			
-				addChild(tab);
-				tab.width=500;
-				tab.create();
-			
 			KeyboardManager.Init(this.stage);
 			MouseManager.Init(Define.stg , this.stage);
 			ControlManager.Init();

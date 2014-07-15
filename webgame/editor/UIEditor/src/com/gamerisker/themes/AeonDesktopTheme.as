@@ -48,6 +48,7 @@ package com.gamerisker.themes
 		[Embed(source="/source/UISource/images/aeon_desktop.xml",mimeType="application/octet-stream")]
 		protected static const ATLAS_XML:Class;
 		public static var m_headerTitleTextFormat:TextFormat;
+		public static var m_defaultTextFormat:TextFormat;
 		public function AeonDesktopTheme()
 		{
 			super();
@@ -63,6 +64,7 @@ package com.gamerisker.themes
 			atlasBitmapData.dispose();
 			this.atlas = new TextureAtlas(atlasTexture, XML(new ATLAS_XML()));
 			m_headerTitleTextFormat=headerTitleTextFormat;
+			m_defaultTextFormat=defaultTextFormat;
 			super.initialize();
 		}
 

@@ -1,5 +1,6 @@
 package com.gamerisker.editor
 {
+	import com.gamerisker.themes.AeonDesktopTheme;
 	import com.gamerisker.utils.GUI;
 	
 	import feathers.controls.ScrollText;
@@ -8,6 +9,7 @@ package com.gamerisker.editor
 	import flash.text.TextFormat;
 	
 	import mx.collections.ArrayList;
+	import mx.utils.ObjectUtil;
 
 	public class ScrollTextEditor extends Editor
 	{
@@ -20,7 +22,7 @@ package com.gamerisker.editor
 		private var m_align : String;
 		private var m_fontName : String;
 		private var m_fontSize : int;
-		
+		private var globalTextFormat:TextFormat;
 		public function ScrollTextEditor()
 		{
 			m_type = "ScrollText";
@@ -29,39 +31,46 @@ package com.gamerisker.editor
 			m_scrollText.addEventListener(FeathersEventType.CREATION_COMPLETE , onCreateComponent);
 			addChild(m_scrollText);
 		}
-		override public function validate():void{
-			m_scrollText.validate();
-		}
+
 		override public function create():void
 		{
+			initGlobalTextFormat();
 			id = GUI.getInstanteIdNew();
 			width = 100;
 			height = 100;
 			alpha = 1;
-			text = "";
+			text = "scrollText";
 			fontBold = true;
-			fontColor = 0x000000;
+			color = 0x000000;
 			align = "left";
 			fontName = "Verdana";
 			fontSize = 12;
 		}
-		
-		public function get width():Number
+		private function initGlobalTextFormat():void{
+			if(globalTextFormat==null){
+				globalTextFormat=new TextFormat();
+				var m_properties_array:Array=ObjectUtil.getClassInfo(AeonDesktopTheme.m_headerTitleTextFormat).properties as Array;
+				for each(var m_proper:String in m_properties_array){
+					globalTextFormat[m_proper]=AeonDesktopTheme.m_defaultTextFormat[m_proper];
+				}
+			}
+		}
+		override public function get width():Number
 		{
 			return m_width;
 		}
 
-		public function set width(value:Number):void
+		override public function set width(value:Number):void
 		{
 			m_width = value;
 		}
 
-		public function get height():Number
+		override public function get height():Number
 		{
 			return m_height;
 		}
 
-		public function set height(value:Number):void
+		override public function set height(value:Number):void
 		{
 			m_height = value;
 		}
@@ -95,18 +104,32 @@ package com.gamerisker.editor
 		public function set fontBold(value:Boolean):void
 		{
 			m_fontBold = value;
-			m_scrollText.textFormat.bold = value;
+			globalTextFormat.bold=value;
+			
+			var m_textFormat:TextFormat=new TextFormat();
+			var m_properties_array:Array=ObjectUtil.getClassInfo(globalTextFormat).properties as Array;
+			for each(var m_proper:String in m_properties_array){
+				m_textFormat[m_proper]=globalTextFormat[m_proper];
+			}
+			m_scrollText.textFormat=m_textFormat;
 		}
 
-		public function get fontColor():uint
+		public function get color():uint
 		{
 			return m_fontColor;
 		}
 
-		public function set fontColor(value:uint):void
+		public function set color(value:uint):void
 		{
 			m_fontColor = value;
-			m_scrollText.textFormat.color = value;
+			globalTextFormat.color=value;
+			
+			var m_textFormat:TextFormat=new TextFormat();
+			var m_properties_array:Array=ObjectUtil.getClassInfo(globalTextFormat).properties as Array;
+			for each(var m_proper:String in m_properties_array){
+				m_textFormat[m_proper]=globalTextFormat[m_proper];
+			}
+			m_scrollText.textFormat=m_textFormat;
 		}
 
 		public function get align():String
@@ -117,7 +140,14 @@ package com.gamerisker.editor
 		public function set align(value:String):void
 		{
 			m_align = value;
-			m_scrollText.textFormat.align = value;
+			globalTextFormat.align=value;
+			
+			var m_textFormat:TextFormat=new TextFormat();
+			var m_properties_array:Array=ObjectUtil.getClassInfo(globalTextFormat).properties as Array;
+			for each(var m_proper:String in m_properties_array){
+				m_textFormat[m_proper]=globalTextFormat[m_proper];
+			}
+			m_scrollText.textFormat=m_textFormat;
 		}
 
 		public function get fontName():String
@@ -128,7 +158,14 @@ package com.gamerisker.editor
 		public function set fontName(value:String):void
 		{
 			m_fontName = value;
-			m_scrollText.textFormat.font = value;
+			globalTextFormat.font=value;
+			
+			var m_textFormat:TextFormat=new TextFormat();
+			var m_properties_array:Array=ObjectUtil.getClassInfo(globalTextFormat).properties as Array;
+			for each(var m_proper:String in m_properties_array){
+				m_textFormat[m_proper]=globalTextFormat[m_proper];
+			}
+			m_scrollText.textFormat=m_textFormat;
 		}
 
 		public function get fontSize():int
@@ -139,7 +176,14 @@ package com.gamerisker.editor
 		public function set fontSize(value:int):void
 		{
 			m_fontSize = value;
-			m_scrollText.textFormat.size = value;
+			globalTextFormat.size=value;
+			
+			var m_textFormat:TextFormat=new TextFormat();
+			var m_properties_array:Array=ObjectUtil.getClassInfo(globalTextFormat).properties as Array;
+			for each(var m_proper:String in m_properties_array){
+				m_textFormat[m_proper]=globalTextFormat[m_proper];
+			}
+			m_scrollText.textFormat=m_textFormat;
 		}
 		
 		override public function toCopy():Editor
@@ -169,8 +213,8 @@ package com.gamerisker.editor
 				'" fontBold="'
 				+fontBold + 
 				
-				'" fontColor="'
-				+fontColor + 
+				'" color="'
+				+color + 
 				'" align="'
 				+align + 
 				'" fontName="'
@@ -206,7 +250,7 @@ package com.gamerisker.editor
 			list[0] = {"Name" : "id" , "Value" : id};
 			list[1] = {"Name" : "text" , "Value" : text};
 			list[2] = {"Name" : "fontBold" , "Value" : fontBold};
-			list[3] = {"Name" : "fontColor" , "Value" : fontColor.toString(16).toLocaleUpperCase()};
+			list[3] = {"Name" : "color" , "Value" : "0x"+color.toString(16).toLocaleUpperCase()};
 			list[4] = {"Name" : "align" , "Value" : align};
 			list[5] = {"Name" : "fontSize" , "Value" : fontSize};
 			list[6] = {"Name" : "alpha" , "Value" : alpha};
@@ -219,12 +263,13 @@ package com.gamerisker.editor
 		
 		override public function xmlToComponent(value:XML):Editor
 		{
+			initGlobalTextFormat();
 			id = GUI.getInstanteId(value.@id.toString());
 			width = int(value.@width);
 			height = int(value.@height);
 			text = value.@text.toString();
 			fontBold = (value.@fontBold.toString() == "true" ? true : false);
-			fontColor = int(value.@fontColor);
+			color = int(value.@fontColor);
 			align = value.@align.toString();
 			fontSize = int(value.@fontSize);
 			alpha = Number(value.@alpha);

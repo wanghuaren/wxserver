@@ -1,5 +1,6 @@
 package com.gamerisker.editor
 {
+	import com.gamerisker.themes.AeonDesktopTheme;
 	import com.gamerisker.utils.GUI;
 	
 	import feathers.controls.Label;
@@ -8,6 +9,7 @@ package com.gamerisker.editor
 	import flash.text.TextFormat;
 	
 	import mx.collections.ArrayList;
+	import mx.utils.ObjectUtil;
 
 	public class LabelEditor extends Editor
 	{
@@ -19,6 +21,7 @@ package com.gamerisker.editor
 		private var m_fontSize : int;
 		private var m_align : String;
 		private var m_bold : Boolean;
+		private var globalTextFormat:TextFormat;
 		
 		public function LabelEditor()
 		{
@@ -31,6 +34,8 @@ package com.gamerisker.editor
 
 		override public function create():void
 		{
+			initGlobalTextFormat();
+			
 			id = GUI.getInstanteIdNew();
 			label = "label";
 			width = 150;
@@ -43,6 +48,16 @@ package com.gamerisker.editor
 			bold = false;
 		}
 		
+		private function initGlobalTextFormat():void{
+			if(globalTextFormat==null){
+				globalTextFormat=new TextFormat();
+				var m_properties_array:Array=ObjectUtil.getClassInfo(AeonDesktopTheme.m_headerTitleTextFormat).properties as Array;
+				for each(var m_proper:String in m_properties_array){
+					globalTextFormat[m_proper]=AeonDesktopTheme.m_defaultTextFormat[m_proper];
+				}
+			}
+		}
+		
 		public function get bold():Boolean
 		{
 			return m_bold;
@@ -51,10 +66,14 @@ package com.gamerisker.editor
 		public function set bold(value:Boolean):void
 		{
 			m_bold = value;
-			if(m_label.textRendererProperties.textFormat==null){
-				m_label.textRendererProperties.textFormat=new TextFormat();
+			globalTextFormat.bold=value;
+			
+			var m_textFormat:TextFormat=new TextFormat();
+			var m_properties_array:Array=ObjectUtil.getClassInfo(globalTextFormat).properties as Array;
+			for each(var m_proper:String in m_properties_array){
+				m_textFormat[m_proper]=globalTextFormat[m_proper];
 			}
-			m_label.textRendererProperties.textFormat.bold = value;
+			m_label.textRendererProperties.textFormat=m_textFormat;
 		}
 		
 		public function get align():String
@@ -65,10 +84,14 @@ package com.gamerisker.editor
 		public function set align(value:String):void
 		{
 			m_align = value;
-			if(m_label.textRendererProperties.textFormat==null){
-				m_label.textRendererProperties.textFormat=new TextFormat();
+			globalTextFormat.align=value;
+			
+			var m_textFormat:TextFormat=new TextFormat();
+			var m_properties_array:Array=ObjectUtil.getClassInfo(globalTextFormat).properties as Array;
+			for each(var m_proper:String in m_properties_array){
+				m_textFormat[m_proper]=globalTextFormat[m_proper];
 			}
-			m_label.textRendererProperties.textFormat.align = value;
+			m_label.textRendererProperties.textFormat=m_textFormat;
 		}
 		
 		public function get label():String
@@ -111,10 +134,14 @@ package com.gamerisker.editor
 		public function set color(value:uint):void
 		{
 			m_color = value;
-			if(m_label.textRendererProperties.textFormat==null){
-				m_label.textRendererProperties.textFormat=new TextFormat();
+			globalTextFormat.color=value;
+			
+			var m_textFormat:TextFormat=new TextFormat();
+			var m_properties_array:Array=ObjectUtil.getClassInfo(globalTextFormat).properties as Array;
+			for each(var m_proper:String in m_properties_array){
+				m_textFormat[m_proper]=globalTextFormat[m_proper];
 			}
-			m_label.textRendererProperties.textFormat.color = value;
+			m_label.textRendererProperties.textFormat=m_textFormat;
 		}
 
 		public function get enabled():Boolean
@@ -136,10 +163,14 @@ package com.gamerisker.editor
 		public function set fontSize(value:int):void
 		{
 			m_fontSize = value;
-			if(m_label.textRendererProperties.textFormat==null){
-				m_label.textRendererProperties.textFormat=new TextFormat();
+			globalTextFormat.size=value;
+			
+			var m_textFormat:TextFormat=new TextFormat();
+			var m_properties_array:Array=ObjectUtil.getClassInfo(globalTextFormat).properties as Array;
+			for each(var m_proper:String in m_properties_array){
+				m_textFormat[m_proper]=globalTextFormat[m_proper];
 			}
-			m_label.textRendererProperties.textFormat.size = value;
+			m_label.textRendererProperties.textFormat=m_textFormat;
 		}
 
 		override public function set alpha(value:Number):void
@@ -230,6 +261,7 @@ package com.gamerisker.editor
 		
 		override public function xmlToComponent(value:XML):Editor
 		{
+			initGlobalTextFormat();
 			id = GUI.getInstanteId(value.@id.toString());
 			label = value.@label.toString();
 			width = int(value.@width);
