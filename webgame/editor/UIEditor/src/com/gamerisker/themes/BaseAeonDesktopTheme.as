@@ -78,13 +78,13 @@ package com.gamerisker.themes
 	import feathers.textures.Scale3Textures;
 	import feathers.textures.Scale9Textures;
 	import feathers.themes.StyleNameFunctionTheme;
-
+	
 	import flash.geom.Rectangle;
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
-
+	
 	import spark.skins.spark.DefaultGridItemRenderer;
-
+	
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
 	import starling.display.Image;
@@ -794,12 +794,6 @@ package com.gamerisker.themes
 
 			list.padding=1;
 
-			list.itemRendererFactory=function():IGroupedListItemRenderer
-			{
-				var m_renderer:DefaultGroupedListItemRenderer=new DefaultGroupedListItemRenderer();
-				m_renderer.labelField="text";
-				return m_renderer;
-			}
 		}
 
 		//see List section for item renderer styles
@@ -902,6 +896,7 @@ package com.gamerisker.themes
 			list.focusPadding=-1;
 
 			list.padding=1;
+			
 		}
 
 		protected function setItemRendererStyles(renderer:BaseDefaultItemRenderer):void
@@ -928,6 +923,8 @@ package com.gamerisker.themes
 			renderer.accessoryGap=Number.POSITIVE_INFINITY;
 			renderer.minAccessoryGap=2;
 			renderer.minWidth=renderer.minHeight=22;
+			
+			renderer.labelField="text";
 		}
 
 		protected function setItemRendererAccessoryLabelStyles(renderer:TextFieldTextRenderer):void
@@ -1056,6 +1053,7 @@ package com.gamerisker.themes
 		protected function setPickerListStyles(list:PickerList):void
 		{
 			list.popUpContentManager=new DropDownPopUpContentManager();
+			list.labelField="text";
 		}
 
 		protected function setPickerListListStyles(list:List):void

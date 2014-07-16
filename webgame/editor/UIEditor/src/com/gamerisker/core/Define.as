@@ -12,9 +12,9 @@ package com.gamerisker.core
 
 	public class Define
 	{
-		public static const UPDATE : String = "http://blog.gamerisker.com/version.xml"
+		public static const UPDATE : String = ""
 			
-		public static const DOWNVERSION : String = "http://blog.gamerisker.com/?p=203";
+		public static const DOWNVERSION : String = "";
 		
 		public static const RegExp_SVN : RegExp = /\.svn/gi;
 		public static const RegExp_Thumbsdb : RegExp = /Thumbs\.db$/gi;

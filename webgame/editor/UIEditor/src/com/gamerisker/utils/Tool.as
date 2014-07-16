@@ -51,12 +51,10 @@ package com.gamerisker.utils
 			{
 				return;
 			}
-			;
 			for (_local2 in _arg1)
 			{
 				delete _arg1[_local2];
 			}
-			;
 		}
 
 		public static function DrawBitmapRectangle(bitd:flash.display.DisplayObject, rangle:Rectangle):Bitmap
@@ -94,7 +92,7 @@ package com.gamerisker.utils
 					const child:starling.display.DisplayObject=container.getChildAt(i);
 					if (child as Editor)
 					{
-						var m_rect:Rectangle=new Rectangle(child.x, child.y, child.width, child.height);
+						var m_rect:Rectangle=new Rectangle(child.x, child.y, child.width + 10, child.height + 10);
 						if (m_rect.containsPoint(container.globalToLocal(localPoint)))
 						{
 							to.push(child);

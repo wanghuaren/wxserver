@@ -8,18 +8,22 @@ package com.gamerisker.manager
 	import com.gamerisker.editor.LabelEditor;
 	import com.gamerisker.editor.ListEditor;
 	import com.gamerisker.editor.NumericStepperEditor;
+	import com.gamerisker.editor.PageIndicatorEditor;
+	import com.gamerisker.editor.PickerListEditor;
+	import com.gamerisker.editor.ProgressBarEditor;
 	import com.gamerisker.editor.RadioButtonEditor;
+	import com.gamerisker.editor.ScrollContainerEditor;
 	import com.gamerisker.editor.ScrollTextEditor;
 	import com.gamerisker.editor.SkinImageEditor;
 	import com.gamerisker.editor.SliderEditor;
 	import com.gamerisker.editor.TabBarEditor;
 	import com.gamerisker.editor.TextInputEditor;
 	import com.gamerisker.editor.TitleWindowEditor;
-
+	
 	import feathers.controls.TabBar;
-
+	
 	import mx.controls.Alert;
-
+	
 	import starling.events.TouchPhase;
 
 	public class ComponentManager
@@ -92,6 +96,14 @@ package com.gamerisker.manager
 					return new GroupedListEditor;
 				case "NumericStepper":
 					return new NumericStepperEditor;
+				case "PageIndicator":
+					return new PageIndicatorEditor;
+				case "PickerList":
+					return new PickerListEditor;
+				case "ProgressBar":
+					return new ProgressBarEditor;
+				case "ScrollContainer":
+					return new ScrollContainerEditor;
 			}
 			Alert.show("ComponentManager : 没有找到组件", "错误", 4, RookieEditor.getInstante().Editor.panel);
 			return null;

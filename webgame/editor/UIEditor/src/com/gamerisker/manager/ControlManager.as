@@ -16,6 +16,7 @@ package com.gamerisker.manager
 	import flash.geom.Point;
 	import flash.text.ReturnKeyLabel;
 
+	import starling.display.DisplayObject;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Touch;
@@ -141,7 +142,7 @@ package com.gamerisker.manager
 			ResetComponent();
 
 			RookieEditor.getInstante().Property.setTarget(editor);
-//			
+			RookieEditor.getInstante().Select.panel.title="选择组件:" + editor.type;
 //			PropertyManager.SetComponentValue(m_component);
 //			
 			RookieEditor.getInstante().Tree.selectItem(editor.id);
@@ -467,6 +468,7 @@ package com.gamerisker.manager
 			{
 				return;
 			}
+			trace(value + "," + m_editor)
 			if (value.length > 0)
 			{
 				var m_childPoint:Point;
@@ -476,15 +478,18 @@ package com.gamerisker.manager
 				{
 					if (i > 2)
 						break;
-					if (value[i].type == "TitleWindow")
+					if (value[i] != m_editor)
 					{
-						if (m_content1 == null)
+						if (value[i].type == "TitleWindow" || value[i].type == "ScrollContainer")
 						{
-							m_content1=value[i];
-						}
-						else
-						{
-							m_content2=value[i];
+							if (m_content1 == null)
+							{
+								m_content1=value[i];
+							}
+							else
+							{
+								m_content2=value[i];
+							}
 						}
 					}
 				}
@@ -508,11 +513,32 @@ package com.gamerisker.manager
 					}
 					else
 					{
-						removeAddEditor(m_editor.parent as Editor);
+						removeAddEditor(getParent(m_editor));
 
 					}
 				}
 			}
+		}
+
+		/**
+		 * 取得当前元件的Editor类型的父级
+		 * */
+		private static function getParent(value:DisplayObject):Editor
+		{
+			var m_parent:DisplayObject=value.parent;
+			while (m_parent != null)
+			{
+				if (m_parent as Editor)
+				{
+					return m_parent as Editor;
+					break;
+				}
+				else
+				{
+					m_parent=m_parent.parent;
+				}
+			}
+			return null;
 		}
 
 		private static function getComponetPoint(value:Editor):Point
@@ -540,10 +566,15 @@ package com.gamerisker.manager
 
 		private static function addEditor(value:Editor):void
 		{
-			var m_childPoint:Point=getComponetPoint(value);
-			value.addEditor(m_editor);
-			m_editor.x=m_childPoint.x - (m_editor.width >> 1);
-			m_editor.y=m_childPoint.y - (m_editor.height >> 1);
+			if (value.type != m_editor.type)
+			{
+				if (getParent(m_editor) != null)
+					getParent(m_editor).removeEditor(m_editor);
+				var m_childPoint:Point=getComponetPoint(value);
+				value.addEditor(m_editor);
+				m_editor.x=m_childPoint.x - (m_editor.width >> 1);
+				m_editor.y=m_childPoint.y - (m_editor.height >> 1);
+			}
 		}
 
 		public static function ResetComponent():void

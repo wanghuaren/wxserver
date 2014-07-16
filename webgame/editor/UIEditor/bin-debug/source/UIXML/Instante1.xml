@@ -1,5 +1,5 @@
-<TitleWindow id="Instante1" x="0" y="0" skin="default_beijing" width="248" height="132" fontSize="12" textWidth="100" textHeight="20" alpha="1" textX="10" textY="10" title="确认框" enabled="true">
-  <Button id="btnSubmit" label="确定" skin="default_button1" x="30" y="81" width="81" height="30" enabled="true" alpha="1"/>
-  <Button id="Instante3" label="取消" skin="default_button1" x="145" y="80" width="79" height="31" enabled="true" alpha="1"/>
-  <Label id="txt" color="0" label="是否关闭面板?" fontSize="12" x="82" y="49" width="80" height="23" enabled="true" alpha="1" align="left" bold="false"/>
+<TitleWindow id="Instante1" x="186" y="352" skin="default_beijing" width="600" height="270" fontSize="12" textWidth="100" textHeight="20" alpha="1" textX="10" textY="10" title="TitleWindow" enabled="true">
+  <ScrollContainer id="Instante4" skin="default_button1" x="166" y="49" width="135" height="214" enabled="true" alpha="1">
+    <Button id="Instante2" label="Button" skin="default_button1" x="7" y="-33" width="100" height="256" enabled="true" alpha="1"/>
+  </ScrollContainer>
 </TitleWindow>

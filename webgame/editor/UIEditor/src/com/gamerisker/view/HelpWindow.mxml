@@ -41,13 +41,12 @@
 		<s:Image x="10" y="10" width="48" height="48"
 				 source="@Embed('ComponentIcon/Logo.png')"/>
 	</s:TitleWindow>
-	<s:Label x="68" y="42" text="作者：YangDan"/>
+	<s:Label x="68" y="42" text="作者：WangHuaren"/>
 	<s:Label x="68" y="60" id="label"/>
 	<s:Button label="更新日志" x="320" y="60" click="{RookieEditor.getInstante().ChangeLog.open()}"/>
-	<s:Label x="68" y="78" text="邮箱：8480136@qq.com"/>
+	<s:Label x="68" y="78" text="邮箱：5377421@qq.com"/>
 	<s:TextArea x="11" y="98" width="379" height="74" editable="false" mouseDown="OnStop(event)"
-				text="RookieEditor是基于Rookie Component 组件的界面编辑器                
-				组件地址：https://github.com/YangDan/Rookie-Components"/>
+				text="RookieEditor是基于Feathers Component 组件的界面编辑器"/>
 	<s:Button label="官网链接" x="165" y="338" click="{navigateToURL(new URLRequest(Define.DOWNVERSION))}"/>
 	<s:Label x="10" y="180" width="323" text="del : 删除当前控制的组件"/>
 	<s:Label x="188" y="180" width="202" text="a : 向左移动组件坐标"/>

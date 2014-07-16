@@ -140,7 +140,7 @@ package com.gamerisker.scene
 			{
 				if (touch.tapCount == 2) //双击
 				{
-					FileManager.openViewFile();
+//					FileManager.openViewFile();
 				}
 			}
 		}

@@ -69,7 +69,8 @@
 					case "toggle" : 
 					case "enabled" :
 					case "isCreateLabel" :
-					case "bold" :
+					case "bold":
+					case "style":
 						setRadioButton(value,target);
 						break
 					case "source" :

@@ -20,6 +20,10 @@ package com.gamerisker.manager
 		
 		[Embed(source="../../../ComponentIcon/Button.jpg")] 
 		public static const ButtonIcon:Class;
+		[Embed(source="../../../ComponentIcon/PickerList.jpg")] 
+		public static const PickerListIcon:Class;
+		[Embed(source="../../../ComponentIcon/PageIndicator.jpg")] 
+		public static const PageIndicatorIcon:Class;
 		[Embed(source="../../../ComponentIcon/GroupedList.jpg")] 
 		public static const GroupedListIcon:Class;
 		[Embed(source="../../../ComponentIcon/TabBar.jpg")] 
@@ -44,8 +48,8 @@ package com.gamerisker.manager
 		public static const ProgressBarIcon:Class;
 		[Embed(source="../../../ComponentIcon/RadioButton.jpg")] 
 		public static const RadioButtonIcon:Class;
-		[Embed(source="../../../ComponentIcon/ScrollPane.jpg")] 
-		public static const ScrollPaneIcon:Class;
+		[Embed(source="../../../ComponentIcon/ScrollContainer.jpg")] 
+		public static const ScrollContainerIcon:Class;
 		[Embed(source="../../../ComponentIcon/ScrollText.jpg")] 
 		public static const ScrollTextIcon:Class;
 		[Embed(source="../../../ComponentIcon/Slider.jpg")] 
