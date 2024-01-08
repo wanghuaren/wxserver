@@ -1,5 +1,0 @@
-<TitleWindow id="Instante1" x="186" y="352" skin="default_beijing" width="600" height="270" fontSize="12" textWidth="100" textHeight="20" alpha="1" textX="10" textY="10" title="TitleWindow" enabled="true">
-  <ScrollContainer id="Instante4" skin="default_button1" x="166" y="49" width="135" height="214" enabled="true" alpha="1">
-    <Button id="Instante2" label="Button" skin="default_button1" x="7" y="-33" width="100" height="256" enabled="true" alpha="1"/>
-  </ScrollContainer>
-</TitleWindow>
